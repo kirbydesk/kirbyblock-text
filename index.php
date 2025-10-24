@@ -1,4 +1,4 @@
-<?php Kirby::plugin('chrfickinger/kirbyblock-text', [
+<?php Kirby::plugin('kirbydesk/block-text', [
 
 	/* -------------- Extensions --------------*/
 	'translations' => require_once 'src/extensions/translations.php',
