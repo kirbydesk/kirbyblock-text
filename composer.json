@@ -20,6 +20,6 @@
 	},
 	"require": {
 		"getkirby/composer-installer": "^1.2",
-		"kirbydesk-fields": "dev-main"
+		"kirbydesk/fields": "dev-main"
 	}
 }
