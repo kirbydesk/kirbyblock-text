@@ -1,4 +1,4 @@
 <?php return array(
 
-	'kdblocktext.title' => 'Text',
+	'kirbyblock-text.name' => 'Text',
 );

@@ -1,5 +1,5 @@
 {
-	"name": "kirbydesk/block-text",
+	"name": "kirbydesk/kirbyblock-text",
 	"description": "Text Block for Kirby CMS",
 	"type": "kirby-plugin",
 	"keywords": [
@@ -7,7 +7,7 @@
 		"kirby-plugin"
 	],
 	"license": "proprietary",
-	"homepage": "https://github.com/kirbydesk/block-text",
+	"homepage": "https://github.com/kirbydesk/kirbyblock-text",
 	"authors": [
 		{
 			"name": "Christian Fickinger",
@@ -16,10 +16,10 @@
 		}
 	],
 	"extra": {
-		"installer-name": "block-text"
+		"installer-name": "kirbyblock-text"
 	},
 	"require": {
 		"getkirby/composer-installer": "^1.2",
-		"kirbydesk/fields": "dev-main"
+		"kirbydesk/kirby-pagewizard": "dev-main"
 	}
 }

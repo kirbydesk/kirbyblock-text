@@ -1,6 +1,7 @@
-<?php Kirby::plugin('kirbydesk/block-text', [
+<?php Kirby::plugin('kirbydesk/kirbyblock-text', [
 
 	/* -------------- Extensions --------------*/
-	'translations' => require_once 'src/extensions/translations.php',
-
+	'blueprints' => require_once 'src/extensions/blueprints.php',
+	'snippets' => require_once 'src/extensions/snippets.php',
+	'translations' => require_once 'src/extensions/translations.php'
 ]);
