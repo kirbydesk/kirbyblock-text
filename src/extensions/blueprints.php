@@ -12,7 +12,7 @@
 		$cfg 			= is_array($raw) ? $raw : ['text' => $raw];
 		$mode 		= $cfg['text'] ?? null;
 		$mode			= is_string($mode) ? strtolower(trim($mode)) : null;
-		$allowed 	= ['textarea', 'writer', 'markdown', 'code'];
+		$allowed 	= ['textarea', 'writer', 'quote', 'markdown'];
 		$type 		= in_array($mode, $allowed, true) ? $mode : 'textarea';
 
 
@@ -60,10 +60,6 @@
 						'textMarkdown' => [
 							'extends' => 'pagewizard/fields/text-markdown',
 							'when'    => ['textMode' => 'markdown'],
-						],
-						'textCode' => [
-							'extends' => 'pagewizard/fields/text-code',
-							'when'    => ['textMode' => 'code'],
 						]
 					],
 				],
@@ -90,12 +86,26 @@
 							'extends' => 'pagewizard/fields/field-visibility',
 							'label'   => 'pw.field.heading',
 							'default' => $defaultHeading ? 'enabled' : 'disabled',
-							'help'    => 'The default setting for Heading is: <code>' . ($defaultHeading ? t('pw.option.enabled') : t('pw.option.disabled')) . '</code>',
+							'help'    => 'The default setting for Heading is: <code>' . ($defaultHeading ? t('pw.option.enabled') : t('pw.option.disabled')) . '</code>'
 						],
 						'textMode' => [
 							'extends' => 'pagewizard/fields/text-mode',
 							'default' => $type,
-							'help'    => 'The default text mode in thie block is: <code>' . t('pw.option.'.$mode) . '</code>',
+							'help'    => 'The default text mode in thie block is: <code>' . t('pw.option.'.$mode) . '</code>'
+						],
+						'blockWidth' => [
+							'extends' => 'pagewizard/fields/block-width'
+						],
+						'blockAlignment' => [
+							'extends' => 'pagewizard/fields/block-alignment'
+						],
+						'blockOffset' => [
+							'extends' => 'pagewizard/fields/block-offset',
+							'when'    => ['blockAlignment' => 'offset']
+						],
+						'blockOffsetvalue' => [
+							'extends' => 'pagewizard/fields/block-offsetvalue',
+							'when'    => ['blockAlignment' => 'offset']
 						]
 					]
 				]
