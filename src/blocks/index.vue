@@ -26,6 +26,9 @@
 		<!-- Markdown -->
 		<Markdown	v-if="content.textmode === 'markdown'" :value="content.textmarkdown" />
 
+		<!-- Buttons -->
+		<Buttons v-if="content.togglebuttons === 'enabled'" :value="content.buttons" />
+
 	</div>
 </template>
 
@@ -37,7 +40,7 @@ import Plain from '@/../../kirby-pagewizard/src/components/textarea.vue'
 import Writer from '@/../../kirby-pagewizard/src/components/writer.vue'
 import Quote from '@/../../kirby-pagewizard/src/components/quote.vue'
 import Markdown from '@/../../kirby-pagewizard/src/components/markdown.vue'
-//import Code from '@/../../kirby-pagewizard/src/components/code.vue'
+import Buttons from '@/../../kirby-pagewizard/src/components/buttons.vue'
 
 export default {
 	components: {
@@ -47,8 +50,8 @@ export default {
 		Plain,
 		Writer,
 		Quote,
-		Markdown
-
+		Markdown,
+		Buttons
 	}
 }
 </script>

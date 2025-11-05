@@ -1,24 +1,39 @@
 <?php return [ 'blocks/pwText' => function () {
 
-		/* -------------- Block Defaults when not set in config --------------*/
-		$raw = option('kirbydesk.pagewizard.kirbyblock.pwText', [
-			'heading' => false,
-			'tagline' => false,
-			'text'    => 'textarea', // default mode
-		]);
+    /* -------------- Block Defaults when not set in config --------------*/
+    $defaults = [
+      'heading' 					=> true,
+      'tagline' 					=> true,
+			'buttons'						=> true,
+      'text'    					=> 'textarea', // textarea, writer, quote, markdown
+      'block-width'     	=> 12, // 6 - 12
+      'block-offset'    	=> 'left', // left, right
+      'block-alignment' 	=> 'center', // center, offset
+      'block-offsetvalue' => 0, // 0 - 6
+    ];
+		// Merge config with defaults
+    $raw = option('kirbydesk.pagewizard.kirbyblock.pwText', []);
+    $cfg = array_merge($defaults, is_array($raw) ? $raw : []);
 
 
-		/* -------------- Text Mode --------------*/
-		$cfg 			= is_array($raw) ? $raw : ['text' => $raw];
-		$mode 		= $cfg['text'] ?? null;
-		$mode			= is_string($mode) ? strtolower(trim($mode)) : null;
-		$allowed 	= ['textarea', 'writer', 'quote', 'markdown'];
-		$type 		= in_array($mode, $allowed, true) ? $mode : 'textarea';
+    /* -------------- Text Mode --------------*/
+    $mode    = $cfg['text'] ?? null;
+    $mode    = is_string($mode) ? strtolower(trim($mode)) : null;
+    $allowed = ['textarea', 'writer', 'quote', 'markdown'];
+    $type    = in_array($mode, $allowed, true) ? $mode : 'textarea';
 
 
-		/* -------------- Heading & Tagline --------------*/
-		$defaultHeading = !empty($cfg['heading']);
-		$defaultTagline = !empty($cfg['tagline']);
+    /* -------------- Block settings --------------*/
+    $defaultBlockWidth      = $cfg['block-width'];
+    $defaultBlockOffset     = $cfg['block-offset'];
+    $defaultBlockAlignment  = $cfg['block-alignment'];
+    $defaultBlockOffsetvalue= $cfg['block-offsetvalue'];
+
+
+    /* -------------- Heading & Tagline --------------*/
+    $defaultHeading = !empty($cfg['heading']);
+    $defaultTagline = !empty($cfg['tagline']);
+		$defaultButtons = !empty($cfg['buttons']);
 
 
 		/* -------------- Blueprint --------------*/
@@ -60,6 +75,10 @@
 						'textMarkdown' => [
 							'extends' => 'pagewizard/fields/text-markdown',
 							'when'    => ['textMode' => 'markdown'],
+						],
+						'buttons' => [
+							'extends' => 'blocks/pwButtons',
+							'when'    => ['toggleButtons' => 'enabled']
 						]
 					],
 				],
@@ -74,8 +93,7 @@
 				'settings' => [
 					'label'  => 'pw.tab.settings',
 					'fields' => [
-						'headlineBlocksettings' => ['extends' => 'pagewizard/headlines/blocksettings'],
-
+						'headlineFieldsettings' => ['extends' => 'pagewizard/headlines/fieldsettings'],
 						'toggleTagline' => [
 							'extends' => 'pagewizard/fields/field-visibility',
 							'label'   => 'pw.field.tagline',
@@ -88,23 +106,35 @@
 							'default' => $defaultHeading ? 'enabled' : 'disabled',
 							'help'    => 'The default setting for Heading is: <code>' . ($defaultHeading ? t('pw.option.enabled') : t('pw.option.disabled')) . '</code>'
 						],
+						'toggleButtons' => [
+							'extends' => 'pagewizard/fields/field-visibility',
+							'label'   => 'pw.field.buttons',
+							'default' => $defaultButtons ? 'enabled' : 'disabled',
+							'help'    => 'The default setting for Buttons is: <code>' . ($defaultButtons ? t('pw.option.enabled') : t('pw.option.disabled')) . '</code>'
+						],
+						'headlineEditorsettings' => ['extends' => 'pagewizard/headlines/editorsettings'],
 						'textMode' => [
 							'extends' => 'pagewizard/fields/text-mode',
 							'default' => $type,
 							'help'    => 'The default text mode in thie block is: <code>' . t('pw.option.'.$mode) . '</code>'
 						],
+						'headlineBlocksettings' => ['extends' => 'pagewizard/headlines/blocksettings'],
 						'blockWidth' => [
-							'extends' => 'pagewizard/fields/block-width'
+							'extends' => 'pagewizard/fields/block-width',
+							'default' => $defaultBlockWidth
 						],
 						'blockAlignment' => [
-							'extends' => 'pagewizard/fields/block-alignment'
+							'extends' => 'pagewizard/fields/block-alignment',
+							'default' => $defaultBlockAlignment
 						],
 						'blockOffset' => [
 							'extends' => 'pagewizard/fields/block-offset',
+							'default' => $defaultBlockOffset,
 							'when'    => ['blockAlignment' => 'offset']
 						],
 						'blockOffsetvalue' => [
 							'extends' => 'pagewizard/fields/block-offsetvalue',
+							'default' => $defaultBlockOffsetvalue,
 							'when'    => ['blockAlignment' => 'offset']
 						]
 					]
