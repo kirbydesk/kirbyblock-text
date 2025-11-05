@@ -98,13 +98,15 @@ export default {
 <style scoped>
 .grid {
   display: block;
-	background-color: var(--color-gray-250);
+	padding: var(--spacing-3);
 	border-radius: var(--rounded) !important;
 }
 @media (min-width: 960px) {
   .grid {
 		display: grid;
+		padding: 0;
 		grid-template-columns: repeat(12, 1fr);
+		background-color: var(--color-gray-250);
 		gap: 1rem;
 
 		.gridItem {

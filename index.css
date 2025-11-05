@@ -230,13 +230,15 @@ button[data-v-7bc2765d] {
 
 .grid[data-v-823ce87b] {
   display: block;
-	background-color: var(--color-gray-250);
+	padding: var(--spacing-3);
 	border-radius: var(--rounded) !important;
 }
 @media (min-width: 960px) {
 .grid[data-v-823ce87b] {
 		display: grid;
+		padding: 0;
 		grid-template-columns: repeat(12, 1fr);
+		background-color: var(--color-gray-250);
 		gap: 1rem;
 .gridItem[data-v-823ce87b] {
 			padding: var(--spacing-3);
