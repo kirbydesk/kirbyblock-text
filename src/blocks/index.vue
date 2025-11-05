@@ -1,34 +1,38 @@
 <template>
 	<div class="pwPreview" data-kirbyblock="text" @dblclick="open">
 
-		<!-- Blockinfo -->
 		<Blockinfo
 			:value="$t('kirbyblock-text.name')"
 			icon="text-left"
 			:layout="$t('pw.field.text-' + content.textmode)"
 		/>
 
-		<!-- Tagline -->
-		<Tagline v-if="content.toggletagline === 'enabled'" :value="content.tagline" />
+		<div class="grid">
+			<div :style="gridStyle" class="gridItem">
 
-		<!-- Heading -->
-		<Heading v-if="content.toggleheading === 'enabled'" :value="content.heading" :data-level="content.level" />
+				<!-- Tagline -->
+				<Tagline v-if="content.toggletagline === 'enabled'" :value="content.tagline" />
 
-		<!-- Plaintext -->
-		<Plain	v-if="content.textmode === 'textarea'" :value="content.texttextarea" />
+				<!-- Heading -->
+				<Heading v-if="content.toggleheading === 'enabled'" :value="content.heading" :data-level="content.level" />
 
-		<!-- Writer -->
-		<Writer	v-if="content.textmode === 'writer'" :value="content.textwriter" />
+				<!-- Plaintext -->
+				<Plain	v-if="content.textmode === 'textarea'" :value="content.texttextarea" />
 
-		<!-- Quote -->
-		<Quote	v-if="content.textmode === 'quote'" :quote="content.textquote" :author="content.author" />
+				<!-- Writer -->
+				<Writer	v-if="content.textmode === 'writer'" :value="content.textwriter" />
 
-		<!-- Markdown -->
-		<Markdown	v-if="content.textmode === 'markdown'" :value="content.textmarkdown" />
+				<!-- Quote -->
+				<Quote	v-if="content.textmode === 'quote'" :quote="content.textquote" :author="content.author" />
 
-		<!-- Buttons -->
-		<Buttons v-if="content.togglebuttons === 'enabled'" :value="content.buttons" />
+				<!-- Markdown -->
+				<Markdown	v-if="content.textmode === 'markdown'" :value="content.textmarkdown" />
 
+				<!-- Buttons -->
+				<Buttons v-if="content.togglebuttons === 'enabled'" :value="content.buttons" />
+
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -52,6 +56,63 @@ export default {
 		Quote,
 		Markdown,
 		Buttons
-	}
+	},
+	computed: {
+    gridStyle() {
+      const span = Number(this.content.blockwidth) || 12;
+
+      // If alignment is "offset", calculate the start column based on offset direction and value
+      if (this.content.blockalignment === 'offset') {
+        const offsetValue = Number(this.content.blockoffsetvalue) || 0;
+        if (this.content.blockoffset === 'left') {
+          return {
+            gridColumn: `${1 + offsetValue} / span ${span}`
+          };
+        }
+        if (this.content.blockoffset === 'right') {
+          // For right offset, calculate the start column from the right side
+          const start = 12 - span - offsetValue + 1;
+          return {
+            gridColumn: `${start} / span ${span}`
+          };
+        }
+      }
+
+      // If alignment is "center", center the block in the grid
+      if (this.content.blockalignment === 'center') {
+        // Calculate the start column so the block is centered
+        const start = Math.floor((12 - span) / 2) + 1;
+        return {
+          gridColumn: `${start} / span ${span}`
+        };
+      }
+
+      // Default: full width or just span the given columns
+      return {
+        gridColumn: `span ${span}`
+      };
+    }
+  }
 }
 </script>
+<style scoped>
+.grid {
+  display: block;
+	background-color: var(--color-gray-250);
+	border-radius: var(--rounded) !important;
+}
+@media (min-width: 960px) {
+  .grid {
+		display: grid;
+		grid-template-columns: repeat(12, 1fr);
+		gap: 1rem;
+
+		.gridItem {
+			padding: var(--spacing-3);
+			background-color: light-dark(white, var(--color-red-750));
+
+			/* TODO: border-radius: var(--rounded) !important; */
+		}
+	}
+}
+</style>

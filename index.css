@@ -24,8 +24,6 @@ div.k-block-container {
 	div.pwPreview {
 		position: relative;
 		border-radius: var(--rounded) !important;
-		color: var(--block-textcolor);
-		padding: var(--spacing-3);
 
 		.placeholder {
 			font-weight: var(--font-normal);
@@ -227,5 +225,24 @@ button[data-v-7bc2765d] {
 	color: white;
 .k-button-text.placeholder[data-v-7bc2765d] {
 		color: white;
+}
+}
+
+.grid[data-v-823ce87b] {
+  display: block;
+	background-color: var(--color-gray-250);
+	border-radius: var(--rounded) !important;
+}
+@media (min-width: 960px) {
+.grid[data-v-823ce87b] {
+		display: grid;
+		grid-template-columns: repeat(12, 1fr);
+		gap: 1rem;
+.gridItem[data-v-823ce87b] {
+			padding: var(--spacing-3);
+			background-color: light-dark(white, var(--color-red-750));
+
+			/* TODO: border-radius: var(--rounded) !important; */
+}
 }
 }
