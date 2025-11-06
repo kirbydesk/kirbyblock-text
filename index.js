@@ -1301,6 +1301,54 @@ Please report this to https://github.com/markedjs/marked.`, e) {
   );
   __component__$1.options.__file = "/Users/christian/Projects/kirbydesk/site/plugins/kirby-pagewizard/src/components/buttons.vue";
   const Buttons = __component__$1.exports;
+  const ToggleLayoutTab = {
+    mounted() {
+      this.setDrawerClass();
+      this.$watch(
+        () => this.content.togglelayout,
+        () => {
+          this.setDrawerClass();
+        }
+      );
+      this.drawerObserver = new MutationObserver(() => {
+        this.setDrawerClass();
+      });
+      this.drawerObserver.observe(document.body, { childList: true, subtree: true });
+    },
+    beforeDestroy() {
+      if (this.drawerObserver) {
+        this.drawerObserver.disconnect();
+      }
+    },
+    methods: {
+      setDrawerClass() {
+        const drawers = document.querySelectorAll(".k-drawer.k-form-drawer");
+        drawers.forEach((drawer) => {
+          if (this.content.togglelayout === "disabled") {
+            drawer.classList.add("hide-layout-tab");
+          } else {
+            drawer.classList.remove("hide-layout-tab");
+          }
+        });
+      }
+    }
+  };
+  const GridStyle = {
+    computed: {
+      gridVars() {
+        return {
+          "--grid-start-sm": Number(this.content.gridoffsetsm),
+          "--grid-span-sm": Number(this.content.gridsizesm),
+          "--grid-start-md": Number(this.content.gridoffsetmd),
+          "--grid-span-md": Number(this.content.gridsizemd),
+          "--grid-start-lg": Number(this.content.gridoffsetlg),
+          "--grid-span-lg": Number(this.content.gridsizelg),
+          "--grid-start-xl": Number(this.content.gridoffsetxl),
+          "--grid-span-xl": Number(this.content.gridsizexl)
+        };
+      }
+    }
+  };
   const _sfc_main = {
     components: {
       Blockinfo,
@@ -1312,38 +1360,11 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       Markdown,
       Buttons
     },
-    computed: {
-      gridStyle() {
-        const span = Number(this.content.blockwidth) || 12;
-        if (this.content.blockalignment === "offset") {
-          const offsetValue = Number(this.content.blockoffsetvalue) || 0;
-          if (this.content.blockoffset === "left") {
-            return {
-              gridColumn: `${1 + offsetValue} / span ${span}`
-            };
-          }
-          if (this.content.blockoffset === "right") {
-            const start = 12 - span - offsetValue + 1;
-            return {
-              gridColumn: `${start} / span ${span}`
-            };
-          }
-        }
-        if (this.content.blockalignment === "center") {
-          const start = Math.floor((12 - span) / 2) + 1;
-          return {
-            gridColumn: `${start} / span ${span}`
-          };
-        }
-        return {
-          gridColumn: `span ${span}`
-        };
-      }
-    }
+    mixins: [ToggleLayoutTab, GridStyle]
   };
   var _sfc_render = function render() {
     var _vm = this, _c = _vm._self._c;
-    return _c("div", { staticClass: "pwPreview", attrs: { "data-kirbyblock": "text" }, on: { "dblclick": _vm.open } }, [_c("Blockinfo", { attrs: { "value": _vm.$t("kirbyblock-text.name"), "icon": "text-left", "layout": _vm.$t("pw.field.text-" + _vm.content.textmode) } }), _c("div", { staticClass: "grid" }, [_c("div", { staticClass: "gridItem", style: _vm.gridStyle }, [_vm.content.toggletagline === "enabled" ? _c("Tagline", { attrs: { "value": _vm.content.tagline } }) : _vm._e(), _vm.content.toggleheading === "enabled" ? _c("Heading", { attrs: { "value": _vm.content.heading, "data-level": _vm.content.level } }) : _vm._e(), _vm.content.textmode === "textarea" ? _c("Plain", { attrs: { "value": _vm.content.texttextarea } }) : _vm._e(), _vm.content.textmode === "writer" ? _c("Writer", { attrs: { "value": _vm.content.textwriter } }) : _vm._e(), _vm.content.textmode === "quote" ? _c("Quote", { attrs: { "quote": _vm.content.textquote, "author": _vm.content.author } }) : _vm._e(), _vm.content.textmode === "markdown" ? _c("Markdown", { attrs: { "value": _vm.content.textmarkdown } }) : _vm._e(), _vm.content.togglebuttons === "enabled" ? _c("Buttons", { attrs: { "value": _vm.content.buttons } }) : _vm._e()], 1)])], 1);
+    return _c("div", { staticClass: "pwPreview", attrs: { "data-kirbyblock": "text" }, on: { "dblclick": _vm.open } }, [_c("Blockinfo", { attrs: { "value": _vm.$t("kirbyblock-text.name"), "icon": "text-left", "layout": _vm.$t("pw.field.text-" + _vm.content.textmode) } }), _c("div", { staticClass: "pwGrid" }, [_c("div", { staticClass: "pwGridItem", style: _vm.gridVars }, [_vm.content.toggletagline === "enabled" ? _c("Tagline", { attrs: { "value": _vm.content.tagline } }) : _vm._e(), _vm.content.toggleheading === "enabled" ? _c("Heading", { attrs: { "value": _vm.content.heading, "data-level": _vm.content.level } }) : _vm._e(), _vm.content.textmode === "textarea" ? _c("Plain", { attrs: { "value": _vm.content.texttextarea } }) : _vm._e(), _vm.content.textmode === "writer" ? _c("Writer", { attrs: { "value": _vm.content.textwriter } }) : _vm._e(), _vm.content.textmode === "quote" ? _c("Quote", { attrs: { "quote": _vm.content.textquote, "author": _vm.content.author } }) : _vm._e(), _vm.content.textmode === "markdown" ? _c("Markdown", { attrs: { "value": _vm.content.textmarkdown } }) : _vm._e(), _vm.content.togglebuttons === "enabled" ? _c("Buttons", { attrs: { "value": _vm.content.buttons } }) : _vm._e()], 1)])], 1);
   };
   var _sfc_staticRenderFns = [];
   _sfc_render._withStripped = true;
@@ -1353,7 +1374,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
     _sfc_staticRenderFns,
     false,
     null,
-    "823ce87b"
+    null
   );
   __component__.options.__file = "/Users/christian/Projects/kirbydesk/site/plugins/kirbyblock-text/src/blocks/index.vue";
   const pwText = __component__.exports;
