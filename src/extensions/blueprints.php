@@ -80,6 +80,10 @@
           'extends' => 'pagewizard/fields/text-markdown',
           'when'    => ['textMode' => 'markdown'],
         ],
+				'buttons' => [
+					'extends' => 'blocks/pwButtons',
+					'when'    => ['toggleButtons' => 'enabled']
+				]
       ],
     ];
 
