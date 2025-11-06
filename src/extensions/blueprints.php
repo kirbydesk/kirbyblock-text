@@ -7,14 +7,14 @@
 			'buttons'						=> true,
 			'layout'						=> true,
       'text-mode'					=> 'textarea',
-			'grid-size-sm'   		=> 10,
-			'grid-size-md'   		=> 8,
-			'grid-size-lg'   		=> 6,
-			'grid-size-xl'   		=> 4,
+			'grid-size-sm'   		=> 12,
+			'grid-size-md'   		=> 12,
+			'grid-size-lg'   		=> 12,
+			'grid-size-xl'   		=> 12,
       'grid-offset-sm' 		=> 1,
-      'grid-offset-md' 		=> 2,
-      'grid-offset-lg' 		=> 3,
-      'grid-offset-xl' 		=> 4,
+      'grid-offset-md' 		=> 1,
+      'grid-offset-lg' 		=> 1,
+      'grid-offset-xl' 		=> 1,
     ];
 		// Merge config with defaults
     $raw = option('kirbydesk.pagewizard.kirbyblock.pwText', []);
