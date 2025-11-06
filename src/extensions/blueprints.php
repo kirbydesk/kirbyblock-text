@@ -17,7 +17,7 @@
       'grid-offset-xl' 		=> 1,
     ];
 		// Merge config with defaults
-    $raw = option('kirbydesk.pagewizard.kirbyblock.pwText', []);
+    $raw = option('kirbydesk.pagewizard.kirbyblocks.pwText', []);
     $cfg = array_merge($defaults, is_array($raw) ? $raw : []);
 
     /* -------------- Text Mode --------------*/
