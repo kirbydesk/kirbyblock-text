@@ -11,10 +11,10 @@
 			<div class="pwGridItem" :style="gridVars">
 
 				<!-- Tagline -->
-				<pwTagline v-if="content.toggletagline === 'enabled'" :value="content.tagline" />
+				<pwTagline v-if="content.toggletagline" :value="content.tagline" />
 
 				<!-- Heading -->
-				<pwHeading v-if="content.toggleheading === 'enabled'" :value="content.heading" :data-level="content.level" />
+				<pwHeading v-if="content.toggleheading" :value="content.heading" :data-level="content.level" />
 
 				<!-- Textarea -->
 				<pwTextarea v-if="content.textmode === 'textarea'" :value="content.texttextarea" />
@@ -29,7 +29,7 @@
 				<pwMarkdown	v-if="content.textmode === 'markdown'" :value="content.textmarkdown" />
 
 				<!-- Buttons -->
-				<pwButtons v-if="content.togglebuttons === 'enabled'" :value="content.buttons" />
+				<pwButtons v-if="content.togglebuttons" :value="content.buttons" />
 
 			</div>
 		</div>

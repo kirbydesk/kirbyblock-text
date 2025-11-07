@@ -50,15 +50,15 @@
       'fields' => [
         'tagline' => [
           'extends' => 'pagewizard/fields/tagline',
-          'when'    => ['toggleTagline' => 'enabled'],
+          'when'    => ['toggleTagline' => true],
         ],
         'heading' => [
           'extends' => 'pagewizard/fields/heading',
-          'when'    => ['toggleHeading' => 'enabled'],
+          'when'    => ['toggleHeading' => true],
         ],
         'level' => [
           'extends' => 'pagewizard/fields/level',
-          'when'    => ['toggleHeading' => 'enabled'],
+          'when'    => ['toggleHeading' => true],
         ],
         'textTextarea' => [
           'extends' => 'pagewizard/fields/text-textarea',
@@ -82,7 +82,7 @@
         ],
 				'buttons' => [
 					'extends' => 'blocks/pwButtons',
-					'when'    => ['toggleButtons' => 'enabled']
+					'when'    => ['toggleButtons' => true]
 				]
       ],
     ];
@@ -142,25 +142,25 @@
         'toggleTagline' => [
           'extends' => 'pagewizard/fields/field-visibility',
           'label'   => 'pw.field.tagline',
-          'default' => $defaultTagline ? 'enabled' : 'disabled',
+          'default' => (bool)$defaultTagline,
           'help'    => 'The default setting for Tagline is: <code>' . ($defaultTagline ? t('pw.option.enabled') : t('pw.option.disabled')) . '</code>',
         ],
         'toggleHeading' => [
           'extends' => 'pagewizard/fields/field-visibility',
           'label'   => 'pw.field.heading',
-          'default' => $defaultHeading ? 'enabled' : 'disabled',
+          'default' => (bool)$defaultHeading,
           'help'    => 'The default setting for Heading is: <code>' . ($defaultHeading ? t('pw.option.enabled') : t('pw.option.disabled')) . '</code>'
         ],
         'toggleButtons' => [
           'extends' => 'pagewizard/fields/field-visibility',
           'label'   => 'pw.field.buttons',
-          'default' => $defaultButtons ? 'enabled' : 'disabled',
+          'default' => (bool)$defaultButtons,
           'help'    => 'The default setting for Buttons is: <code>' . ($defaultButtons ? t('pw.option.enabled') : t('pw.option.disabled')) . '</code>'
         ],
 				'toggleLayout' => [
           'extends' => 'pagewizard/fields/field-visibility',
           'label'   => 'pw.field.layout',
-          'default' => $defaultLayout ? 'enabled' : 'disabled',
+          'default' => (bool)$defaultLayout,
           'help'    => 'The default setting for Layout is: <code>' . ($defaultLayout ? t('pw.option.enabled') : t('pw.option.disabled')) . '</code>'
         ],
         'headlineEditorsettings' => ['extends' => 'pagewizard/headlines/editorsettings'],
