@@ -44,12 +44,36 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
   const pwBlockinfo = __component__$8.exports;
   const _sfc_main$7 = {
     props: {
-      value: String
+      value: String,
+      content: {
+        type: Object,
+        default: () => ({})
+      }
+    },
+    computed: {
+      parsedData() {
+        var _a2;
+        const val = ((_a2 = this.content) == null ? void 0 : _a2.tagline) || this.value;
+        if (!val) return { text: "", align: "left" };
+        try {
+          return typeof val === "string" ? JSON.parse(val) : val;
+        } catch (e) {
+          return { text: val, align: "left" };
+        }
+      },
+      text() {
+        const { text = "" } = this.parsedData;
+        return text;
+      },
+      align() {
+        const { align = "left" } = this.parsedData;
+        return align;
+      }
     }
   };
   var _sfc_render$7 = function render() {
     var _vm = this, _c = _vm._self._c;
-    return _c("div", { staticClass: "pwTagline" }, [_vm.value ? _c("div", { domProps: { "innerHTML": _vm._s(_vm.value) } }) : _c("div", { staticClass: "placeholder" }, [_vm._v(" " + _vm._s(_vm.$t("pw.field.tagline.placeholder")) + " ")])]);
+    return _c("div", { staticClass: "pwTagline", attrs: { "data-align": _vm.align } }, [_vm.text ? _c("div", { domProps: { "innerHTML": _vm._s(_vm.text) } }) : _c("div", { staticClass: "placeholder" }, [_vm._v(" " + _vm._s(_vm.$t("pw.field.tagline.placeholder")) + " ")])]);
   };
   var _sfc_staticRenderFns$7 = [];
   _sfc_render$7._withStripped = true;
@@ -66,15 +90,39 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
   const _sfc_main$6 = {
     props: {
       value: String,
-      level: {
-        type: String,
-        default: "h2"
+      content: {
+        type: Object,
+        default: () => ({})
+      }
+    },
+    computed: {
+      parsedData() {
+        var _a2;
+        const val = ((_a2 = this.content) == null ? void 0 : _a2.heading) || this.value;
+        if (!val) return { text: "", level: "h2", align: "left" };
+        try {
+          return typeof val === "string" ? JSON.parse(val) : val;
+        } catch (e) {
+          return { text: val, level: "h2", align: "left" };
+        }
+      },
+      text() {
+        const { text = "" } = this.parsedData;
+        return text;
+      },
+      level() {
+        const { level = "h2" } = this.parsedData;
+        return level;
+      },
+      align() {
+        const { align = "left" } = this.parsedData;
+        return align;
       }
     }
   };
   var _sfc_render$6 = function render() {
     var _vm = this, _c = _vm._self._c;
-    return _c("div", { staticClass: "pwHeading", attrs: { "data-level": _vm.level } }, [_vm.value ? _c("div", { domProps: { "innerHTML": _vm._s(_vm.value) } }) : _c("div", { staticClass: "placeholder" }, [_vm._v(" " + _vm._s(_vm.$t("pw.field.heading.placeholder")) + " ")])]);
+    return _c("div", { staticClass: "pwHeading", attrs: { "data-align": _vm.align, "data-lvl": _vm.level } }, [_vm.text ? _c("div", { domProps: { "innerHTML": _vm._s(_vm.text) } }) : _c("div", { staticClass: "placeholder" }, [_vm._v(" " + _vm._s(_vm.$t("pw.field.heading.placeholder")) + " ")])]);
   };
   var _sfc_staticRenderFns$6 = [];
   _sfc_render$6._withStripped = true;

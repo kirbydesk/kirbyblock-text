@@ -47,10 +47,6 @@
           'extends' => 'pagewizard/fields/heading',
           'when'    => ['toggleHeading' => true],
         ],
-        'level' => [
-          'extends' => 'pagewizard/fields/level',
-          'when'    => ['toggleHeading' => true],
-        ],
         'textTextarea' => [
           'extends' => 'pagewizard/fields/text-textarea',
           'when'    => ['textMode' => 'textarea'],
