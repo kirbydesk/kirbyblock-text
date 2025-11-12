@@ -1,20 +1,20 @@
 <?php return [ 'blocks/pwText' => function () {
 
-    /* -------------- Block Defaults when not set in config --------------*/
+    /* -------------- Block Defaults when not set in config.php --------------*/
     $defaults = [
       'heading' 					=> true,
       'tagline' 					=> true,
 			'buttons'						=> true,
-			'layout'						=> true,
       'text-mode'					=> 'textarea',
+			'grid'							=> true,
 			'grid-size-sm'   		=> 12,
-			'grid-size-md'   		=> 12,
-			'grid-size-lg'   		=> 12,
-			'grid-size-xl'   		=> 12,
+			'grid-size-md'   		=> 11,
+			'grid-size-lg'   		=> 10,
+			'grid-size-xl'   		=> 9,
       'grid-offset-sm' 		=> 1,
-      'grid-offset-md' 		=> 1,
-      'grid-offset-lg' 		=> 1,
-      'grid-offset-xl' 		=> 1,
+      'grid-offset-md' 		=> 2,
+      'grid-offset-lg' 		=> 3,
+      'grid-offset-xl' 		=> 4,
     ];
 		// Merge config with defaults
     $raw = option('kirbydesk.pagewizard.kirbyblocks.pwText', []);
@@ -26,21 +26,11 @@
     $allowed = ['textarea', 'writer', 'quote', 'markdown'];
     $type    = in_array($mode, $allowed, true) ? $mode : 'textarea';
 
-    /* -------------- Grid settings --------------*/
-		$defaultGridSizeSm    = $cfg['grid-size-sm'];
-		$defaultGridOffsetSm  = $cfg['grid-offset-sm'];
-		$defaultGridSizeMd		= $cfg['grid-size-md'];
-		$defaultGridOffsetMd	= $cfg['grid-offset-md'];
-		$defaultGridSizeLg		= $cfg['grid-size-lg'];
-		$defaultGridOffsetLg	= $cfg['grid-offset-lg'];
-		$defaultGridSizeXl		= $cfg['grid-size-xl'];
-		$defaultGridOffsetXl	= $cfg['grid-offset-xl'];
-
     /* -------------- Allowed Fields --------------*/
     $defaultHeading = !empty($cfg['heading']);
     $defaultTagline = !empty($cfg['tagline']);
 		$defaultButtons = !empty($cfg['buttons']);
-		$defaultLayout = filter_var($cfg['layout'], FILTER_VALIDATE_BOOLEAN);
+		$defaultGrid = filter_var($cfg['grid'], FILTER_VALIDATE_BOOLEAN);
 
 		/* -------------- Tabs --------------*/
     $tabs = [];
@@ -48,6 +38,7 @@
 		$tabs['content'] = [
       'label'  => 'pw.tab.content',
       'fields' => [
+				'headlineContent' => ['extends' => 'pagewizard/headlines/blockcontent'],
         'tagline' => [
           'extends' => 'pagewizard/fields/tagline',
           'when'    => ['toggleTagline' => true],
@@ -87,48 +78,21 @@
       ],
     ];
 
-		$tabs['layout'] = [
-			'label'  => 'pw.tab.layout',
-			'fields' => [
-				'headlineBlocksettings' => ['extends' => 'pagewizard/headlines/gridsettings'],
-				'gridOffsetSm' => [
-					'extends' => 'pagewizard/fields/grid-offset',
-					'default' => $defaultGridOffsetSm
-				],
-				'gridSizeSm' => [
-					'extends' => 'pagewizard/fields/grid-size',
-					'default' => $defaultGridSizeSm
-				],
-				'gridOffsetMd' => [
-					'extends' => 'pagewizard/fields/grid-offset',
-					'default' => $defaultGridOffsetMd
-				],
-				'gridSizeMd' => [
-					'extends' => 'pagewizard/fields/grid-size',
-					'default' => $defaultGridSizeMd
-				],
-				'gridOffsetLg' => [
-					'extends' => 'pagewizard/fields/grid-offset',
-					'default' => $defaultGridOffsetLg
-				],
-				'gridSizeLg' => [
-					'extends' => 'pagewizard/fields/grid-size',
-					'default' => $defaultGridSizeLg
-				],
-				'gridOffsetXl' => [
-					'extends' => 'pagewizard/fields/grid-offset',
-					'default' => $defaultGridOffsetXl
-				],
-				'gridSizeXl' => [
-					'extends' => 'pagewizard/fields/grid-size',
-					'default' => $defaultGridSizeXl
-				],
-			]
-		];
+		$tabs['grid'] = pwGrid::layout('pwText', [
+			'gridSizeSm'   => $defaults['grid-size-sm'],
+			'gridOffsetSm' => $defaults['grid-offset-sm'],
+			'gridSizeMd'   => $defaults['grid-size-md'],
+			'gridOffsetMd' => $defaults['grid-offset-md'],
+			'gridSizeLg'   => $defaults['grid-size-lg'],
+			'gridOffsetLg' => $defaults['grid-offset-lg'],
+			'gridSizeXl'   => $defaults['grid-size-xl'],
+			'gridOffsetXl' => $defaults['grid-offset-xl'],
+		]);
 
 		$tabs['properties'] = [
       'label'  => 'pw.tab.properties',
       'fields' => [
+				'headlineProperties' => ['extends' => 'pagewizard/headlines/blockproperties'],
         'fragment' => [
           'extends' => 'pagewizard/fields/fragment'
         ]
@@ -141,33 +105,37 @@
         'headlineFieldsettings' => ['extends' => 'pagewizard/headlines/fieldsettings'],
         'toggleTagline' => [
           'extends' => 'pagewizard/fields/field-visibility',
-          'label'   => 'pw.field.tagline',
+          'label'   => 'pw.field.toggle.tagline',
           'default' => (bool)$defaultTagline,
+					'width'   => '1/4',
           'help'    => 'The default setting for Tagline is: <code>' . ($defaultTagline ? t('pw.option.enabled') : t('pw.option.disabled')) . '</code>',
         ],
         'toggleHeading' => [
           'extends' => 'pagewizard/fields/field-visibility',
-          'label'   => 'pw.field.heading',
+          'label'   => 'pw.field.toggle.heading',
           'default' => (bool)$defaultHeading,
-          'help'    => 'The default setting for Heading is: <code>' . ($defaultHeading ? t('pw.option.enabled') : t('pw.option.disabled')) . '</code>'
+					'width'   => '1/4',
+          'help'    => t('pw.field.toggle.heading.help') . ' <code>' . ($defaultHeading ? t('pw.option.enabled') : t('pw.option.disabled')) . '</code>'
         ],
         'toggleButtons' => [
           'extends' => 'pagewizard/fields/field-visibility',
-          'label'   => 'pw.field.buttons',
+          'label'   => 'pw.field.toggle.buttons',
           'default' => (bool)$defaultButtons,
-          'help'    => 'The default setting for Buttons is: <code>' . ($defaultButtons ? t('pw.option.enabled') : t('pw.option.disabled')) . '</code>'
+					'width'   => '1/4',
+          'help'    => t('pw.field.toggle.buttons.help') . ' <code>' . ($defaultButtons ? t('pw.option.enabled') : t('pw.option.disabled')) . '</code>'
         ],
-				'toggleLayout' => [
+				'toggleGrid' => [
           'extends' => 'pagewizard/fields/field-visibility',
-          'label'   => 'pw.field.layout',
-          'default' => (bool)$defaultLayout,
-          'help'    => 'The default setting for Layout is: <code>' . ($defaultLayout ? t('pw.option.enabled') : t('pw.option.disabled')) . '</code>'
+          'label'   => 'pw.field.toggle.grid',
+          'default' => (bool)$defaultGrid,
+					'width'   => '1/4',
+          'help'    => t('pw.field.toggle.grid.help') . ' <code>' . ($defaultGrid ? t('pw.option.enabled') : t('pw.option.disabled')) . '</code>'
         ],
         'headlineEditorsettings' => ['extends' => 'pagewizard/headlines/editorsettings'],
         'textMode' => [
           'extends' => 'pagewizard/fields/text-mode',
           'default' => $type,
-          'help'    => 'The default text mode in this block is: <code>' . t('pw.option.'.$mode) . '</code>'
+          'help'    => t('pw.field.text-mode.help') . ' <code>' . t('pw.option.'.$mode) . '</code>'
         ]
       ]
     ];

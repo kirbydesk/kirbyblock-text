@@ -1304,11 +1304,11 @@ Please report this to https://github.com/markedjs/marked.`, e) {
   );
   __component__$1.options.__file = "/Users/christian/Projects/kirbydesk/site/plugins/kirby-pagewizard/src/components/buttons.vue";
   const pwButtons = __component__$1.exports;
-  const pwToggleLayoutTab = {
+  const pwToggleGridTab = {
     mounted() {
       this.setDrawerClass();
       this.$watch(
-        () => this.content.togglelayout,
+        () => this.content.togglegrid,
         () => {
           this.setDrawerClass();
         }
@@ -1327,7 +1327,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       setDrawerClass() {
         const drawers = document.querySelectorAll(".k-drawer.k-form-drawer");
         drawers.forEach((drawer) => {
-          drawer.classList.toggle("hide-layout-tab", this.content.togglelayout === false);
+          drawer.classList.toggle("hide-grid-tab", this.content.togglegrid === false);
         });
       }
     }
@@ -1359,7 +1359,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       pwMarkdown,
       pwButtons
     },
-    mixins: [pwToggleLayoutTab, pwGridStyle]
+    mixins: [pwToggleGridTab, pwGridStyle]
   };
   var _sfc_render = function render() {
     var _vm = this, _c = _vm._self._c;

@@ -45,7 +45,7 @@ import pwWriter from '@/../../kirby-pagewizard/src/components/writer.vue'
 import pwQuote from '@/../../kirby-pagewizard/src/components/quote.vue'
 import pwMarkdown from '@/../../kirby-pagewizard/src/components/markdown.vue'
 import pwButtons from '@/../../kirby-pagewizard/src/components/buttons.vue'
-import pwToggleLayoutTab from '@/../../kirby-pagewizard/src/mixins/toggleLayoutTab.js';
+import pwToggleGridTab from '@/../../kirby-pagewizard/src/mixins/toggleGridTab.js';
 import pwGridStyle from '@/../../kirby-pagewizard/src/mixins/gridStyle.js';
 
 export default {
@@ -59,6 +59,6 @@ export default {
 		pwMarkdown,
 		pwButtons
 	},
-	mixins: [pwToggleLayoutTab, pwGridStyle],
+	mixins: [pwToggleGridTab, pwGridStyle],
 }
 </script>
