@@ -8,13 +8,13 @@
       'text-mode'					=> 'textarea',
 			'grid'							=> true,
 			'grid-size-sm'   		=> 12,
-			'grid-size-md'   		=> 11,
-			'grid-size-lg'   		=> 10,
-			'grid-size-xl'   		=> 9,
+			'grid-size-md'   		=> 12,
+			'grid-size-lg'   		=> 12,
+			'grid-size-xl'   		=> 12,
       'grid-offset-sm' 		=> 1,
-      'grid-offset-md' 		=> 2,
-      'grid-offset-lg' 		=> 3,
-      'grid-offset-xl' 		=> 4,
+      'grid-offset-md' 		=> 1,
+      'grid-offset-lg' 		=> 1,
+      'grid-offset-xl' 		=> 1,
     ];
 		// Merge config with defaults
     $raw = option('kirbydesk.pagewizard.kirbyblocks.pwText', []);
@@ -23,7 +23,7 @@
     /* -------------- Text Mode --------------*/
     $mode    = $cfg['text-mode'] ?? null;
     $mode    = is_string($mode) ? strtolower(trim($mode)) : null;
-    $allowed = ['textarea', 'writer', 'quote', 'markdown'];
+    $allowed = ['textarea', 'writer', 'markdown'];
     $type    = in_array($mode, $allowed, true) ? $mode : 'textarea';
 
     /* -------------- Allowed Fields --------------*/
@@ -54,14 +54,6 @@
         'textWriter' => [
           'extends' => 'pagewizard/fields/text-writer',
           'when'    => ['textMode' => 'writer'],
-        ],
-        'textQuote' => [
-          'extends' => 'pagewizard/fields/text-quote',
-          'when'    => ['textMode' => 'quote'],
-        ],
-        'author' => [
-          'extends' => 'pagewizard/fields/author',
-          'when'    => ['textMode' => 'quote'],
         ],
         'textMarkdown' => [
           'extends' => 'pagewizard/fields/text-markdown',

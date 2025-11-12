@@ -22,9 +22,6 @@
 				<!-- Writer -->
 				<pwWriter	v-if="content.textmode === 'writer'" :value="content.textwriter" />
 
-				<!-- Quote -->
-				<pwQuote	v-if="content.textmode === 'quote'" :quote="content.textquote" :author="content.author" />
-
 				<!-- Markdown -->
 				<pwMarkdown	v-if="content.textmode === 'markdown'" :value="content.textmarkdown" />
 
@@ -42,7 +39,6 @@ import pwTagline from '@/../../kirby-pagewizard/src/components/tagline.vue'
 import pwHeading from '@/../../kirby-pagewizard/src/components/heading.vue'
 import pwTextarea from '@/../../kirby-pagewizard/src/components/textarea.vue'
 import pwWriter from '@/../../kirby-pagewizard/src/components/writer.vue'
-import pwQuote from '@/../../kirby-pagewizard/src/components/quote.vue'
 import pwMarkdown from '@/../../kirby-pagewizard/src/components/markdown.vue'
 import pwButtons from '@/../../kirby-pagewizard/src/components/buttons.vue'
 import pwToggleGridTab from '@/../../kirby-pagewizard/src/mixins/toggleGridTab.js';
@@ -55,7 +51,6 @@ export default {
 		pwHeading,
 		pwTextarea,
 		pwWriter,
-		pwQuote,
 		pwMarkdown,
 		pwButtons
 	},
