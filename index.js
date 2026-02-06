@@ -1383,6 +1383,9 @@ Please report this to https://github.com/markedjs/marked.`, e) {
   const GRID_TAB_HIDDEN_CLASS = "hide-grid-tab";
   const pwToggleGridTab = {
     mounted() {
+      setTimeout(() => {
+        this.claimActiveDrawerForGrid();
+      }, 100);
       this.$watch(
         () => this.content.togglegrid,
         () => {
@@ -1391,11 +1394,9 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       );
       if (this.$el) {
         this._handleDblClick = () => {
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-              this.claimActiveDrawerForGrid();
-            });
-          });
+          setTimeout(() => {
+            this.claimActiveDrawerForGrid();
+          }, 20);
         };
         this.$el.addEventListener("dblclick", this._handleDblClick);
       }
@@ -1455,6 +1456,9 @@ Please report this to https://github.com/markedjs/marked.`, e) {
   const SPACING_TAB_HIDDEN_CLASS = "hide-spacing-tab";
   const pwToggleSpacingTab = {
     mounted() {
+      setTimeout(() => {
+        this.claimActiveDrawerForSpacing();
+      }, 100);
       this.$watch(
         () => this.content.togglespacing,
         () => {
@@ -1463,11 +1467,9 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       );
       if (this.$el) {
         this._handleDblClickSpacing = () => {
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-              this.claimActiveDrawerForSpacing();
-            });
-          });
+          setTimeout(() => {
+            this.claimActiveDrawerForSpacing();
+          }, 20);
         };
         this.$el.addEventListener("dblclick", this._handleDblClickSpacing);
       }
@@ -1527,6 +1529,9 @@ Please report this to https://github.com/markedjs/marked.`, e) {
   const THEME_TAB_HIDDEN_CLASS = "hide-theme-tab";
   const pwToggleThemeTab = {
     mounted() {
+      setTimeout(() => {
+        this.claimActiveDrawerForTheme();
+      }, 100);
       this.$watch(
         () => this.content.toggletheme,
         () => {
@@ -1535,11 +1540,9 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       );
       if (this.$el) {
         this._handleDblClickTheme = () => {
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-              this.claimActiveDrawerForTheme();
-            });
-          });
+          setTimeout(() => {
+            this.claimActiveDrawerForTheme();
+          }, 20);
         };
         this.$el.addEventListener("dblclick", this._handleDblClickTheme);
       }
@@ -1613,7 +1616,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
   };
   var _sfc_render = function render() {
     var _vm = this, _c = _vm._self._c;
-    return _c("div", { staticClass: "pwPreview", attrs: { "data-kirbyblock": "text", "data-margintop": _vm.content.margintop === true ? "true" : null, "data-marginbottom": _vm.content.marginbottom === true ? "true" : null, "data-paddingtop": _vm.content.paddingtop === true ? "true" : null, "data-paddingbottom": _vm.content.paddingbottom === true ? "true" : null }, on: { "dblclick": _vm.open } }, [_c("pwBlockinfo", { attrs: { "value": _vm.$t("kirbyblock-text.name"), "icon": "text-left", "layout": _vm.$t("pw.field.text-" + _vm.content.textmode) } }), _c("div", { staticClass: "pwGrid" }, [_c("div", { staticClass: "pwGridItem", style: _vm.gridVars }, [_vm.content.toggletagline ? _c("pwTagline", { attrs: { "value": _vm.content.tagline } }) : _vm._e(), _vm.content.toggleheading ? _c("pwHeading", { attrs: { "value": _vm.content.heading, "data-level": _vm.content.level } }) : _vm._e(), _vm.content.textmode === "textarea" ? _c("pwTextarea", { attrs: { "value": _vm.content.texttextarea } }) : _vm._e(), _vm.content.textmode === "writer" ? _c("pwWriter", { attrs: { "value": _vm.content.textwriter } }) : _vm._e(), _vm.content.textmode === "markdown" ? _c("pwMarkdown", { attrs: { "value": _vm.content.textmarkdown } }) : _vm._e(), _vm.content.togglebuttons ? _c("pwButtons", { attrs: { "value": _vm.content.buttons } }) : _vm._e()], 1)])], 1);
+    return _c("div", { staticClass: "pwPreview", attrs: { "data-kirbyblock": "text", "data-margintop": _vm.content.margintop === true ? "true" : null, "data-marginbottom": _vm.content.marginbottom === true ? "true" : null }, on: { "dblclick": _vm.open } }, [_c("pwBlockinfo", { attrs: { "value": _vm.$t("kirbyblock-text.name"), "icon": "text-left", "layout": _vm.$t("pw.field.text-" + _vm.content.textmode) } }), _c("div", { staticClass: "pwGrid" }, [_c("div", { staticClass: "pwGridItem", style: _vm.gridVars, attrs: { "data-paddingtop": _vm.content.paddingtop === true ? "true" : null, "data-paddingbottom": _vm.content.paddingbottom === true ? "true" : null } }, [_vm.content.toggletagline ? _c("pwTagline", { attrs: { "value": _vm.content.tagline } }) : _vm._e(), _vm.content.toggleheading ? _c("pwHeading", { attrs: { "value": _vm.content.heading, "data-level": _vm.content.level } }) : _vm._e(), _vm.content.textmode === "textarea" ? _c("pwTextarea", { attrs: { "value": _vm.content.texttextarea } }) : _vm._e(), _vm.content.textmode === "writer" ? _c("pwWriter", { attrs: { "value": _vm.content.textwriter } }) : _vm._e(), _vm.content.textmode === "markdown" ? _c("pwMarkdown", { attrs: { "value": _vm.content.textmarkdown } }) : _vm._e(), _vm.content.togglebuttons ? _c("pwButtons", { attrs: { "value": _vm.content.buttons } }) : _vm._e()], 1)])], 1);
   };
   var _sfc_staticRenderFns = [];
   _sfc_render._withStripped = true;

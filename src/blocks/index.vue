@@ -5,8 +5,6 @@
 	@dblclick="open"
 	:data-margintop="content.margintop === true ? 'true' : null"
 	:data-marginbottom="content.marginbottom === true ? 'true' : null"
-	:data-paddingtop="content.paddingtop === true ? 'true' : null"
-	:data-paddingbottom="content.paddingbottom === true ? 'true' : null"
 	>
 
 		<pwBlockinfo
@@ -16,7 +14,12 @@
 		/>
 
 		<div class="pwGrid">
-			<div class="pwGridItem" :style="gridVars">
+			<div
+				class="pwGridItem"
+				:style="gridVars"
+				:data-paddingtop="content.paddingtop === true ? 'true' : null"
+				:data-paddingbottom="content.paddingbottom === true ? 'true' : null"
+				>
 
 				<!-- Tagline -->
 				<pwTagline v-if="content.toggletagline" :value="content.tagline" />

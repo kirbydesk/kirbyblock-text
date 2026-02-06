@@ -21,7 +21,7 @@
 			'padding-top'     	=> true,
 			'padding-bottom'  	=> true,
 			'theme'							=> true,
-			'style'			=> 'default',
+			'style'							=> 'default', // default, variant
     ];
 		// Merge config with defaults
     $raw = option('kirbydesk.pagewizard.kirbyblocks.pwText', []);
@@ -133,6 +133,12 @@
 					'width'   => '1/3',
           'help'    => t('pw.field.toggle.buttons.help') . ' <code>' . ($defaultButtons ? t('pw.option.enabled') : t('pw.option.disabled')) . '</code>'
         ],
+				'headlineEditorsettings' => ['extends' => 'pagewizard/headlines/editorsettings'],
+        'textMode' => [
+          'extends' => 'pagewizard/fields/text-mode',
+          'default' => $type,
+          'help'    => t('pw.field.text-mode.help') . ' <code>' . t('pw.option.'.$mode) . '</code>'
+        ],
 				'headlineLayoutsettings' => ['extends' => 'pagewizard/headlines/layoutsettings'],
 				'toggleGrid' => [
           'extends' => 'pagewizard/fields/field-visibility',
@@ -154,12 +160,6 @@
           'default' => (bool)$defaultTheme,
 					'width'   => '1/3',
           'help'    => t('pw.field.toggle.theme.help') . ' <code>' . ($defaultTheme ? t('pw.option.enabled') : t('pw.option.disabled')) . '</code>'
-        ],
-        'headlineEditorsettings' => ['extends' => 'pagewizard/headlines/editorsettings'],
-        'textMode' => [
-          'extends' => 'pagewizard/fields/text-mode',
-          'default' => $type,
-          'help'    => t('pw.field.text-mode.help') . ' <code>' . t('pw.option.'.$mode) . '</code>'
         ]
       ]
     ];
