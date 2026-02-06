@@ -95,7 +95,7 @@
 		]);
 
 		$tabs['theme'] = pwTheme::options('pwText', [
-			'theme' => $defaults['style'] ?? 'default',
+			'style' => $defaults['style'] ?? 'default',
 		]);
 
 		$tabs['properties'] = [
