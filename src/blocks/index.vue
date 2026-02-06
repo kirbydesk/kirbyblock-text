@@ -1,5 +1,13 @@
 <template>
-	<div class="pwPreview" data-kirbyblock="text" @dblclick="open">
+<div
+	class="pwPreview"
+	data-kirbyblock="text"
+	@dblclick="open"
+	:data-margintop="content.margintop === true ? 'true' : null"
+	:data-marginbottom="content.marginbottom === true ? 'true' : null"
+	:data-paddingtop="content.paddingtop === true ? 'true' : null"
+	:data-paddingbottom="content.paddingbottom === true ? 'true' : null"
+	>
 
 		<pwBlockinfo
 			:value="$t('kirbyblock-text.name')"
@@ -41,8 +49,10 @@ import pwTextarea from '@/../../kirby-pagewizard/src/components/textarea.vue'
 import pwWriter from '@/../../kirby-pagewizard/src/components/writer.vue'
 import pwMarkdown from '@/../../kirby-pagewizard/src/components/markdown.vue'
 import pwButtons from '@/../../kirby-pagewizard/src/components/buttons.vue'
-import pwToggleGridTab from '@/../../kirby-pagewizard/src/mixins/toggleGridTab.js';
 import pwGridStyle from '@/../../kirby-pagewizard/src/mixins/gridStyle.js';
+import pwToggleGridTab from '@/../../kirby-pagewizard/src/mixins/toggleGridTab.js';
+import pwToggleSpacingTab from '@/../../kirby-pagewizard/src/mixins/toggleSpacingTab.js';
+import pwToggleThemeTab from '@/../../kirby-pagewizard/src/mixins/toggleThemeTab.js';
 
 export default {
 	components: {
@@ -54,6 +64,12 @@ export default {
 		pwMarkdown,
 		pwButtons
 	},
-	mixins: [pwToggleGridTab, pwGridStyle],
+	mixins: [pwToggleGridTab, pwGridStyle, pwToggleSpacingTab, pwToggleThemeTab],
+  computed: {
+		toggleGrid() {
+			if (!this.content) return undefined;
+			return this.content.togglegrid;
+		}
+  }
 }
 </script>

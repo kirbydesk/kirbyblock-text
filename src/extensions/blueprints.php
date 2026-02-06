@@ -15,6 +15,13 @@
       'grid-offset-md' 		=> 1,
       'grid-offset-lg' 		=> 1,
       'grid-offset-xl' 		=> 1,
+			'spacing'						=> true,
+			'margin-top'		    => false,
+			'margin-bottom'			=> true,
+			'padding-top'     	=> true,
+			'padding-bottom'  	=> true,
+			'theme'							=> true,
+			'style'			=> 'default',
     ];
 		// Merge config with defaults
     $raw = option('kirbydesk.pagewizard.kirbyblocks.pwText', []);
@@ -30,7 +37,10 @@
     $defaultHeading = !empty($cfg['heading']);
     $defaultTagline = !empty($cfg['tagline']);
 		$defaultButtons = !empty($cfg['buttons']);
+
 		$defaultGrid = filter_var($cfg['grid'], FILTER_VALIDATE_BOOLEAN);
+    $defaultSpacing = filter_var($cfg['spacing'], FILTER_VALIDATE_BOOLEAN);
+		$defaultTheme = filter_var($cfg['theme'], FILTER_VALIDATE_BOOLEAN);
 
 		/* -------------- Tabs --------------*/
     $tabs = [];
@@ -77,6 +87,17 @@
 			'gridOffsetXl' => $defaults['grid-offset-xl'],
 		]);
 
+		$tabs['spacing'] = pwSpacing::options('pwText', [
+			'marginTop'    => $defaults['margin-top'],
+			'marginBottom' => $defaults['margin-bottom'],
+			'paddingTop'   => $defaults['padding-top'],
+			'paddingBottom'=> $defaults['padding-bottom'],
+		]);
+
+		$tabs['theme'] = pwTheme::options('pwText', [
+			'theme' => $defaults['style'] ?? 'default',
+		]);
+
 		$tabs['properties'] = [
       'label'  => 'pw.tab.properties',
       'fields' => [
@@ -95,29 +116,44 @@
           'extends' => 'pagewizard/fields/field-visibility',
           'label'   => 'pw.field.toggle.tagline',
           'default' => (bool)$defaultTagline,
-					'width'   => '1/4',
+					'width'   => '1/3',
           'help'    => 'The default setting for Tagline is: <code>' . ($defaultTagline ? t('pw.option.enabled') : t('pw.option.disabled')) . '</code>',
         ],
         'toggleHeading' => [
           'extends' => 'pagewizard/fields/field-visibility',
           'label'   => 'pw.field.toggle.heading',
           'default' => (bool)$defaultHeading,
-					'width'   => '1/4',
+					'width'   => '1/3',
           'help'    => t('pw.field.toggle.heading.help') . ' <code>' . ($defaultHeading ? t('pw.option.enabled') : t('pw.option.disabled')) . '</code>'
         ],
         'toggleButtons' => [
           'extends' => 'pagewizard/fields/field-visibility',
           'label'   => 'pw.field.toggle.buttons',
           'default' => (bool)$defaultButtons,
-					'width'   => '1/4',
+					'width'   => '1/3',
           'help'    => t('pw.field.toggle.buttons.help') . ' <code>' . ($defaultButtons ? t('pw.option.enabled') : t('pw.option.disabled')) . '</code>'
         ],
+				'headlineLayoutsettings' => ['extends' => 'pagewizard/headlines/layoutsettings'],
 				'toggleGrid' => [
           'extends' => 'pagewizard/fields/field-visibility',
           'label'   => 'pw.field.toggle.grid',
           'default' => (bool)$defaultGrid,
-					'width'   => '1/4',
+					'width'   => '1/3',
           'help'    => t('pw.field.toggle.grid.help') . ' <code>' . ($defaultGrid ? t('pw.option.enabled') : t('pw.option.disabled')) . '</code>'
+        ],
+				'toggleSpacing' => [
+          'extends' => 'pagewizard/fields/field-visibility',
+          'label'   => 'pw.field.toggle.spacing',
+          'default' => (bool)$defaultSpacing,
+					'width'   => '1/3',
+          'help'    => t('pw.field.toggle.spacing.help') . ' <code>' . ($defaultSpacing ? t('pw.option.enabled') : t('pw.option.disabled')) . '</code>'
+        ],
+				'toggleTheme' => [
+          'extends' => 'pagewizard/fields/field-visibility',
+          'label'   => 'pw.field.toggle.theme',
+          'default' => (bool)$defaultTheme,
+					'width'   => '1/3',
+          'help'    => t('pw.field.toggle.theme.help') . ' <code>' . ($defaultTheme ? t('pw.option.enabled') : t('pw.option.disabled')) . '</code>'
         ],
         'headlineEditorsettings' => ['extends' => 'pagewizard/headlines/editorsettings'],
         'textMode' => [
