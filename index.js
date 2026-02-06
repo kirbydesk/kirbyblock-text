@@ -1377,7 +1377,6 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       }
     }
   };
-  const DRAWER_OPEN_DELAY$2 = 50;
   const DRAWER_SELECTOR$2 = ".k-drawer.k-form-drawer";
   const DRAWER_ACTIVE_SELECTOR$2 = `${DRAWER_SELECTOR$2}[aria-current="true"]`;
   const DRAWER_CLOSED_SELECTOR$2 = `${DRAWER_SELECTOR$2}[aria-current="false"][data-block-id]`;
@@ -1392,9 +1391,11 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       );
       if (this.$el) {
         this._handleDblClick = () => {
-          setTimeout(() => {
-            this.claimActiveDrawerForGrid();
-          }, DRAWER_OPEN_DELAY$2);
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              this.claimActiveDrawerForGrid();
+            });
+          });
         };
         this.$el.addEventListener("dblclick", this._handleDblClick);
       }
@@ -1430,8 +1431,13 @@ Please report this to https://github.com/markedjs/marked.`, e) {
         closedDrawers.forEach((drawer) => drawer.removeAttribute("data-block-id"));
         const activeDrawer = document.querySelector(DRAWER_ACTIVE_SELECTOR$2);
         if (activeDrawer) {
+          const isOff = this.content.togglegrid === false || this.content.togglegrid === "false";
           activeDrawer.setAttribute("data-block-id", this.id);
-          this.setGridDrawerClass();
+          if (isOff) {
+            activeDrawer.classList.add(GRID_TAB_HIDDEN_CLASS);
+          } else {
+            activeDrawer.classList.remove(GRID_TAB_HIDDEN_CLASS);
+          }
         }
       },
       setGridDrawerClass() {
@@ -1443,7 +1449,6 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       }
     }
   };
-  const DRAWER_OPEN_DELAY$1 = 50;
   const DRAWER_SELECTOR$1 = ".k-drawer.k-form-drawer";
   const DRAWER_ACTIVE_SELECTOR$1 = `${DRAWER_SELECTOR$1}[aria-current="true"]`;
   const DRAWER_CLOSED_SELECTOR$1 = `${DRAWER_SELECTOR$1}[aria-current="false"][data-block-id]`;
@@ -1458,9 +1463,11 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       );
       if (this.$el) {
         this._handleDblClickSpacing = () => {
-          setTimeout(() => {
-            this.claimActiveDrawerForSpacing();
-          }, DRAWER_OPEN_DELAY$1);
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              this.claimActiveDrawerForSpacing();
+            });
+          });
         };
         this.$el.addEventListener("dblclick", this._handleDblClickSpacing);
       }
@@ -1496,8 +1503,13 @@ Please report this to https://github.com/markedjs/marked.`, e) {
         closedDrawers.forEach((drawer) => drawer.removeAttribute("data-block-id"));
         const activeDrawer = document.querySelector(DRAWER_ACTIVE_SELECTOR$1);
         if (activeDrawer) {
+          const isOff = this.content.togglespacing === false || this.content.togglespacing === "false";
           activeDrawer.setAttribute("data-block-id", this.id);
-          this.setSpacingDrawerClass();
+          if (isOff) {
+            activeDrawer.classList.add(SPACING_TAB_HIDDEN_CLASS);
+          } else {
+            activeDrawer.classList.remove(SPACING_TAB_HIDDEN_CLASS);
+          }
         }
       },
       setSpacingDrawerClass() {
@@ -1509,7 +1521,6 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       }
     }
   };
-  const DRAWER_OPEN_DELAY = 50;
   const DRAWER_SELECTOR = ".k-drawer.k-form-drawer";
   const DRAWER_ACTIVE_SELECTOR = `${DRAWER_SELECTOR}[aria-current="true"]`;
   const DRAWER_CLOSED_SELECTOR = `${DRAWER_SELECTOR}[aria-current="false"][data-block-id]`;
@@ -1524,9 +1535,11 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       );
       if (this.$el) {
         this._handleDblClickTheme = () => {
-          setTimeout(() => {
-            this.claimActiveDrawerForTheme();
-          }, DRAWER_OPEN_DELAY);
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              this.claimActiveDrawerForTheme();
+            });
+          });
         };
         this.$el.addEventListener("dblclick", this._handleDblClickTheme);
       }
@@ -1562,8 +1575,13 @@ Please report this to https://github.com/markedjs/marked.`, e) {
         closedDrawers.forEach((drawer) => drawer.removeAttribute("data-block-id"));
         const activeDrawer = document.querySelector(DRAWER_ACTIVE_SELECTOR);
         if (activeDrawer) {
+          const isOff = this.content.toggletheme === false || this.content.toggletheme === "false";
           activeDrawer.setAttribute("data-block-id", this.id);
-          this.setThemeDrawerClass();
+          if (isOff) {
+            activeDrawer.classList.add(THEME_TAB_HIDDEN_CLASS);
+          } else {
+            activeDrawer.classList.remove(THEME_TAB_HIDDEN_CLASS);
+          }
         }
       },
       setThemeDrawerClass() {
