@@ -22,6 +22,13 @@
 			'padding-bottom'  	=> true,
 			'theme'							=> true,
 			'style'							=> 'default', // default, variant
+			'colors'						=> [
+				'primary'   => '#00BBFF',
+				'secondary' => '#101828',
+				'accent'    => '#FF6B35',
+				'background'=> '#FFFFFF',
+				'text'      => '#101828',
+			],
     ];
 		// Merge config with defaults
     $raw = option('kirbydesk.pagewizard.kirbyblocks.pwText', []);

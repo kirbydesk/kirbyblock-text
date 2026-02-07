@@ -1,7 +1,3 @@
 section[data-block="text"] {
-border: 1px solid red;
-
-
-
-
+	color: var(--pw-color-accent);
 }
