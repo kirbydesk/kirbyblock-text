@@ -1,5 +1,5 @@
 <?php return [
 
 	/* -------------- Snippets --------------*/
-	'blocks/pwText' => __DIR__ . '/../../snippets/index.php'
+	'blocks/pwtext' => __DIR__ . '/../../snippets/index.php'
 ];

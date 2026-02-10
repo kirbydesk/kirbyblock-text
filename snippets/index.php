@@ -13,7 +13,7 @@ echo $block->fragment()->isNotEmpty() ? ' id="'.$block->fragment()->value().'"' 
 echo '>'."\n";
 
 // Grid
-echo '<div data-layout="grid"><div';
+echo '<div data-layout="grid" class="bg-amber-400"><div';
 echo ' data-grid-size-sm="'.$block->gridsizesm()->value().'"';
 echo ' data-grid-size-md="'.$block->gridsizemd()->value().'"';
 echo ' data-grid-size-lg="'.$block->gridsizelg()->value().'"';
