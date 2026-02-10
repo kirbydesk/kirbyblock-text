@@ -1,0 +1,22 @@
+{
+  "heading": true,
+  "tagline": true,
+  "buttons": true,
+  "text-mode": "textarea",
+  "grid": true,
+  "grid-size-sm": 12,
+  "grid-size-md": 12,
+  "grid-size-lg": 12,
+  "grid-size-xl": 12,
+  "grid-offset-sm": 1,
+  "grid-offset-md": 1,
+  "grid-offset-lg": 1,
+  "grid-offset-xl": 1,
+  "spacing": true,
+  "margin-top": false,
+  "margin-bottom": true,
+  "padding-top": true,
+  "padding-bottom": true,
+  "theme": true,
+  "style": "default"
+}

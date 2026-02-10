@@ -10,7 +10,6 @@ echo ' data-padding-top="'.$block->paddingtop()->value().'"';
 echo ' data-padding-bottom="'.$block->paddingbottom()->value().'"';
 echo ' data-style="'.$block->style()->value().'"';
 echo $block->fragment()->isNotEmpty() ? ' id="'.$block->fragment()->value().'"' : '';
-echo pwGetColorStyles('pwText');
 echo '>'."\n";
 
 // Grid

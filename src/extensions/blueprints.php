@@ -1,28 +1,10 @@
 <?php return [ 'blocks/pwText' => function () {
 
     /* -------------- Block Defaults when not set in config.php --------------*/
-    $defaults = [
-      'heading' 					=> true,
-      'tagline' 					=> true,
-			'buttons'						=> true,
-      'text-mode'					=> 'textarea',
-			'grid'							=> true,
-			'grid-size-sm'   		=> 12,
-			'grid-size-md'   		=> 12,
-			'grid-size-lg'   		=> 12,
-			'grid-size-xl'   		=> 12,
-      'grid-offset-sm' 		=> 1,
-      'grid-offset-md' 		=> 1,
-      'grid-offset-lg' 		=> 1,
-      'grid-offset-xl' 		=> 1,
-			'spacing'						=> true,
-			'margin-top'		    => false,
-			'margin-bottom'			=> true,
-			'padding-top'     	=> true,
-			'padding-bottom'  	=> true,
-			'theme'							=> true,
-			'style'							=> 'default', // default, variant
-    ];
+    $defaultsFile = __DIR__ . '/../config/defaults.json';
+    $defaults = file_exists($defaultsFile)
+      ? json_decode(file_get_contents($defaultsFile), true)
+      : [];
 		// Merge config with defaults
     $raw = option('kirbydesk.pagewizard.kirbyblocks.pwText', []);
     $cfg = array_merge($defaults, is_array($raw) ? $raw : []);
