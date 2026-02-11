@@ -1,11 +1,7 @@
 {
 	"name": "kirbyblock-text",
 	"version": "0.0.0",
-	"scripts": {
-			"dev": "npx kirbyup src/index.js --watch",
-			"build": "npx kirbyup src/index.js"
-	},
-	"devDependencies": {
-			"kirbyup": "^3.4.1"
+	"dependencies": {
+		"marked": "^16.4.1"
 	}
 }
