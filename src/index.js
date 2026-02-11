@@ -1,6 +1,3 @@
-// Styles
-import "../../kirby-pagewizard/src/css/panel.css";
-
 // Blocks
 import pwtext from "@/blocks/index.vue";
 
