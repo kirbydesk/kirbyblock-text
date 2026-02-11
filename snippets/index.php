@@ -25,16 +25,16 @@ echo ' data-grid-offset-xl="'.$block->gridoffsetxl()->value().'"';
 echo '>'."\n";
 
 // Tagline
-snippet('field/tagline', ['content' => $block]);
+snippet('tagline', ['content' => $block]);
 
 // Heading
-snippet('field/heading', ['content' => $block]);
+snippet('heading', ['content' => $block]);
 
 // Text
-snippet('field/text', ['content' => $block]);
+snippet('text', ['content' => $block]);
 
 // Buttons
-snippet('field/buttons', ['content' => $block]);
+snippet('buttons', ['content' => $block]);
 
 
 echo '</div></div>'."\n"; // End Grid
