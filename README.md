@@ -15,4 +15,3 @@ A text block for Kirby's PageWizard.
 
 - `.kirbyup` → Triggers automatic build via KirbyUp
 - `.stub` → Generates underscore copies for customization
--
