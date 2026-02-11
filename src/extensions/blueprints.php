@@ -1,4 +1,4 @@
-<?php return [ 'blocks/pwText' => function () {
+<?php return [ 'blocks/pwtext' => function () {
 
     /* -------------- Block Defaults when not set in config.php --------------*/
     $defaultsFile = __DIR__ . '/../config/defaults.json';
@@ -6,7 +6,7 @@
       ? json_decode(file_get_contents($defaultsFile), true)
       : [];
 		// Merge config with defaults
-    $raw = option('kirbydesk.pagewizard.kirbyblocks.pwText', []);
+    $raw = option('kirbydesk.pagewizard.kirbyblocks.pwtext', []);
     $cfg = array_merge($defaults, is_array($raw) ? $raw : []);
 
     /* -------------- Text Mode --------------*/
@@ -58,7 +58,7 @@
       ],
     ];
 
-		$tabs['grid'] = pwGrid::layout('pwText', [
+		$tabs['grid'] = pwGrid::layout('pwtext', [
 			'gridSizeSm'   => $defaults['grid-size-sm'],
 			'gridOffsetSm' => $defaults['grid-offset-sm'],
 			'gridSizeMd'   => $defaults['grid-size-md'],
@@ -69,14 +69,14 @@
 			'gridOffsetXl' => $defaults['grid-offset-xl'],
 		]);
 
-		$tabs['spacing'] = pwSpacing::options('pwText', [
+		$tabs['spacing'] = pwSpacing::options('pwtext', [
 			'marginTop'    => $defaults['margin-top'],
 			'marginBottom' => $defaults['margin-bottom'],
 			'paddingTop'   => $defaults['padding-top'],
 			'paddingBottom'=> $defaults['padding-bottom'],
 		]);
 
-		$tabs['theme'] = pwTheme::options('pwText', [
+		$tabs['theme'] = pwTheme::options('pwtext', [
 			'style' => $defaults['style'] ?? 'default',
 		]);
 
