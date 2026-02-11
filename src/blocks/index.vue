@@ -1,11 +1,10 @@
 <template>
-<div
-	class="pwPreview"
-	data-kirbyblock="text"
-	@dblclick="open"
-	:data-margintop="content.margintop === true ? 'true' : null"
-	:data-marginbottom="content.marginbottom === true ? 'true' : null"
-	>
+	<div
+		class="pwPreview"
+		data-kirbyblock="text"
+		@dblclick="open"
+		:data-marginbottom="content.marginbottom === true ? 'true' : null"
+		>
 
 		<pwBlockinfo
 			:value="$t('kirbyblock-text.name')"
@@ -68,11 +67,5 @@ export default {
 		pwButtons
 	},
 	mixins: [pwToggleGridTab, pwGridStyle, pwToggleSpacingTab, pwToggleThemeTab],
-  computed: {
-		toggleGrid() {
-			if (!this.content) return undefined;
-			return this.content.togglegrid;
-		}
-  }
 }
 </script>

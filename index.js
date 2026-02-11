@@ -173,7 +173,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
   };
   var _sfc_render$4 = function render() {
     var _vm = this, _c = _vm._self._c;
-    return _c("div", { staticClass: "pwText", attrs: { "data-align": _vm.align } }, [_vm.text ? _c("div", { domProps: { "innerHTML": _vm._s(_vm.nl2br(_vm.text)) } }) : _c("div", { staticClass: "placeholder" }, [_vm._v(" " + _vm._s(_vm.$t("pw.field.text-textarea.placeholder")) + " ")])]);
+    return _c("div", { staticClass: "pwtext", attrs: { "data-align": _vm.align } }, [_vm.text ? _c("div", { domProps: { "innerHTML": _vm._s(_vm.nl2br(_vm.text)) } }) : _c("div", { staticClass: "placeholder" }, [_vm._v(" " + _vm._s(_vm.$t("pw.field.text-textarea.placeholder")) + " ")])]);
   };
   var _sfc_staticRenderFns$4 = [];
   _sfc_render$4._withStripped = true;
@@ -194,7 +194,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
   };
   var _sfc_render$3 = function render() {
     var _vm = this, _c = _vm._self._c;
-    return _c("div", { staticClass: "pwText" }, [_vm.value ? _c("div", { domProps: { "innerHTML": _vm._s(_vm.value) } }) : _c("div", { staticClass: "placeholder" }, [_vm._v(" " + _vm._s(_vm.$t("pw.field.text-writer.placeholder")) + " ")])]);
+    return _c("div", { staticClass: "pwtext" }, [_vm.value ? _c("div", { domProps: { "innerHTML": _vm._s(_vm.value) } }) : _c("div", { staticClass: "placeholder" }, [_vm._v(" " + _vm._s(_vm.$t("pw.field.text-writer.placeholder")) + " ")])]);
   };
   var _sfc_staticRenderFns$3 = [];
   _sfc_render$3._withStripped = true;
@@ -1606,17 +1606,11 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       pwMarkdown,
       pwButtons
     },
-    mixins: [pwToggleGridTab, pwGridStyle, pwToggleSpacingTab, pwToggleThemeTab],
-    computed: {
-      toggleGrid() {
-        if (!this.content) return void 0;
-        return this.content.togglegrid;
-      }
-    }
+    mixins: [pwToggleGridTab, pwGridStyle, pwToggleSpacingTab, pwToggleThemeTab]
   };
   var _sfc_render = function render() {
     var _vm = this, _c = _vm._self._c;
-    return _c("div", { staticClass: "pwPreview", attrs: { "data-kirbyblock": "text", "data-margintop": _vm.content.margintop === true ? "true" : null, "data-marginbottom": _vm.content.marginbottom === true ? "true" : null }, on: { "dblclick": _vm.open } }, [_c("pwBlockinfo", { attrs: { "value": _vm.$t("kirbyblock-text.name"), "icon": "text-left", "layout": _vm.$t("pw.field.text-" + _vm.content.textmode) } }), _c("div", { staticClass: "pwGrid" }, [_c("div", { staticClass: "pwGridItem", style: _vm.gridVars, attrs: { "data-paddingtop": _vm.content.paddingtop === true ? "true" : null, "data-paddingbottom": _vm.content.paddingbottom === true ? "true" : null } }, [_vm.content.toggletagline ? _c("pwTagline", { attrs: { "value": _vm.content.tagline } }) : _vm._e(), _vm.content.toggleheading ? _c("pwHeading", { attrs: { "value": _vm.content.heading, "data-level": _vm.content.level } }) : _vm._e(), _vm.content.textmode === "textarea" ? _c("pwTextarea", { attrs: { "value": _vm.content.texttextarea } }) : _vm._e(), _vm.content.textmode === "writer" ? _c("pwWriter", { attrs: { "value": _vm.content.textwriter } }) : _vm._e(), _vm.content.textmode === "markdown" ? _c("pwMarkdown", { attrs: { "value": _vm.content.textmarkdown } }) : _vm._e(), _vm.content.togglebuttons ? _c("pwButtons", { attrs: { "value": _vm.content.buttons } }) : _vm._e()], 1)])], 1);
+    return _c("div", { staticClass: "pwPreview", attrs: { "data-kirbyblock": "text", "data-marginbottom": _vm.content.marginbottom === true ? "true" : null }, on: { "dblclick": _vm.open } }, [_c("pwBlockinfo", { attrs: { "value": _vm.$t("kirbyblock-text.name"), "icon": "text-left", "layout": _vm.$t("pw.field.text-" + _vm.content.textmode) } }), _c("div", { staticClass: "pwGrid" }, [_c("div", { staticClass: "pwGridItem", style: _vm.gridVars, attrs: { "data-paddingtop": _vm.content.paddingtop === true ? "true" : null, "data-paddingbottom": _vm.content.paddingbottom === true ? "true" : null } }, [_vm.content.toggletagline ? _c("pwTagline", { attrs: { "value": _vm.content.tagline } }) : _vm._e(), _vm.content.toggleheading ? _c("pwHeading", { attrs: { "value": _vm.content.heading, "data-level": _vm.content.level } }) : _vm._e(), _vm.content.textmode === "textarea" ? _c("pwTextarea", { attrs: { "value": _vm.content.texttextarea } }) : _vm._e(), _vm.content.textmode === "writer" ? _c("pwWriter", { attrs: { "value": _vm.content.textwriter } }) : _vm._e(), _vm.content.textmode === "markdown" ? _c("pwMarkdown", { attrs: { "value": _vm.content.textmarkdown } }) : _vm._e(), _vm.content.togglebuttons ? _c("pwButtons", { attrs: { "value": _vm.content.buttons } }) : _vm._e()], 1)])], 1);
   };
   var _sfc_staticRenderFns = [];
   _sfc_render._withStripped = true;
@@ -1629,10 +1623,10 @@ Please report this to https://github.com/markedjs/marked.`, e) {
     null
   );
   __component__.options.__file = "/Users/christian/Projects/kirbydesk/site/plugins/kirbyblock-text/src/blocks/index.vue";
-  const pwText = __component__.exports;
+  const pwtext = __component__.exports;
   panel.plugin("kirbydesk/kirbyblock-text", {
     blocks: {
-      pwText
+      pwtext
     }
   });
 })();

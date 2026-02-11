@@ -1,5 +1,10 @@
 <?php
 
+// Custom Background
+if ($block->content()->style()->value() === 'custom'):
+	echo '<style>section[data-block-id="b'.$block->id().'"] { color: '.$block->content()->textcolor()->value().'; background-color: '.$block->content()->backgroundcolor()->value().' }</style>';
+endif;
+
 // Section
 echo '<section';
 echo ' data-block="text"';
@@ -9,11 +14,12 @@ echo ' data-margin-bottom="'.$block->marginbottom()->value().'"';
 echo ' data-padding-top="'.$block->paddingtop()->value().'"';
 echo ' data-padding-bottom="'.$block->paddingbottom()->value().'"';
 echo ' data-style="'.$block->style()->value().'"';
+e($block->content()->style()->value() === 'custom' && $block->buttonstyle()->value() === 'variant', ' data-button-style="variant"');
 echo $block->fragment()->isNotEmpty() ? ' id="'.$block->fragment()->value().'"' : '';
 echo '>'."\n";
 
 // Grid
-echo '<div data-layout="grid" class="bg-amber-400"><div';
+echo '<div data-layout="grid"><div';
 echo ' data-grid-size-sm="'.$block->gridsizesm()->value().'"';
 echo ' data-grid-size-md="'.$block->gridsizemd()->value().'"';
 echo ' data-grid-size-lg="'.$block->gridsizelg()->value().'"';
