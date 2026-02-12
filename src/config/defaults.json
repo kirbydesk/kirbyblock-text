@@ -14,7 +14,7 @@
   "grid-offset-xl": 1,
   "spacing": true,
   "margin-top": false,
-  "margin-bottom": true,
+  "margin-bottom": false,
   "padding-top": true,
   "padding-bottom": true,
   "theme": true,

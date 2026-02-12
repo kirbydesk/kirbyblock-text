@@ -14,6 +14,7 @@ echo ' data-margin-bottom="'.$block->marginbottom()->value().'"';
 echo ' data-padding-top="'.$block->paddingtop()->value().'"';
 echo ' data-padding-bottom="'.$block->paddingbottom()->value().'"';
 echo ' data-style="'.$block->style()->value().'"';
+echo ' data-background-size="'.$block->backgroundsize()->value().'"';
 e($block->content()->style()->value() === 'custom' && $block->buttonstyle()->value() === 'variant', ' data-button-style="variant"');
 echo $block->fragment()->isNotEmpty() ? ' id="'.$block->fragment()->value().'"' : '';
 echo '>'."\n";

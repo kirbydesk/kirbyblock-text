@@ -3,6 +3,7 @@
 		class="pwPreview"
 		data-kirbyblock="text"
 		@dblclick="open"
+		:data-margintop="content.margintop === true ? 'true' : null"
 		:data-marginbottom="content.marginbottom === true ? 'true' : null"
 		>
 
