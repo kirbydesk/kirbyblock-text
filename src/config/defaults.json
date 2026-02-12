@@ -3,7 +3,7 @@
   "tagline": true,
   "buttons": true,
   "text-mode": "textarea",
-  "grid": true,
+  "tab-grid": true,
   "grid-size-sm": 12,
   "grid-size-md": 12,
   "grid-size-lg": 12,
@@ -12,11 +12,11 @@
   "grid-offset-md": 1,
   "grid-offset-lg": 1,
   "grid-offset-xl": 1,
-  "spacing": true,
+  "tab-spacing": true,
   "margin-top": false,
   "margin-bottom": false,
   "padding-top": true,
   "padding-bottom": true,
-  "theme": true,
+  "tab-theme": true,
   "style": "default"
 }

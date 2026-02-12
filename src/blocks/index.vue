@@ -22,10 +22,10 @@
 				>
 
 				<!-- Tagline -->
-				<pwTagline v-if="content.toggletagline" :value="content.tagline" />
+				<pwTagline v-if="content.tagline !== undefined" :value="content.tagline" />
 
 				<!-- Heading -->
-				<pwHeading v-if="content.toggleheading" :value="content.heading" :data-level="content.level" />
+				<pwHeading v-if="content.heading !== undefined" :value="content.heading" :data-level="content.level" />
 
 				<!-- Textarea -->
 				<pwTextarea v-if="content.textmode === 'textarea'" :value="content.texttextarea" />
@@ -37,7 +37,7 @@
 				<pwMarkdown	v-if="content.textmode === 'markdown'" :value="content.textmarkdown" />
 
 				<!-- Buttons -->
-				<pwButtons v-if="content.togglebuttons" :value="content.buttons" />
+				<pwButtons v-if="content.buttons !== undefined" :value="content.buttons" />
 
 			</div>
 		</div>
@@ -53,9 +53,6 @@ import pwWriter from '@/../../kirby-pagewizard/src/components/writer.vue'
 import pwMarkdown from '@/../../kirby-pagewizard/src/components/markdown.vue'
 import pwButtons from '@/../../kirby-pagewizard/src/components/buttons.vue'
 import pwGridStyle from '@/../../kirby-pagewizard/src/mixins/gridStyle.js';
-import pwToggleGridTab from '@/../../kirby-pagewizard/src/mixins/toggleGridTab.js';
-import pwToggleSpacingTab from '@/../../kirby-pagewizard/src/mixins/toggleSpacingTab.js';
-import pwToggleThemeTab from '@/../../kirby-pagewizard/src/mixins/toggleThemeTab.js';
 
 export default {
 	components: {
@@ -67,6 +64,6 @@ export default {
 		pwMarkdown,
 		pwButtons
 	},
-	mixins: [pwToggleGridTab, pwGridStyle, pwToggleSpacingTab, pwToggleThemeTab],
+	mixins: [pwGridStyle],
 }
 </script>
