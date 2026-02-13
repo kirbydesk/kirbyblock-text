@@ -1387,11 +1387,24 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       pwMarkdown,
       pwButtons
     },
-    mixins: [pwGridStyle]
+    mixins: [pwGridStyle],
+    data() {
+      return {
+        settings: {}
+      };
+    },
+    async created() {
+      try {
+        const response = await this.$api.get("pagewizard/settings/pwtext");
+        this.settings = response.settings;
+      } catch (e) {
+        this.settings = {};
+      }
+    }
   };
   var _sfc_render = function render() {
     var _vm = this, _c = _vm._self._c;
-    return _c("div", { staticClass: "pwPreview", attrs: { "data-kirbyblock": "text", "data-margintop": _vm.content.margintop === true ? "true" : null, "data-marginbottom": _vm.content.marginbottom === true ? "true" : null }, on: { "dblclick": _vm.open } }, [_c("pwBlockinfo", { attrs: { "value": _vm.$t("kirbyblock-text.name"), "icon": "text-left", "layout": _vm.$t("pw.field.text-" + _vm.content.textmode) } }), _c("div", { staticClass: "pwGrid" }, [_c("div", { staticClass: "pwGridItem", style: _vm.gridVars, attrs: { "data-paddingtop": _vm.content.paddingtop === true ? "true" : null, "data-paddingbottom": _vm.content.paddingbottom === true ? "true" : null } }, [_vm.content.tagline !== void 0 ? _c("pwTagline", { attrs: { "value": _vm.content.tagline } }) : _vm._e(), _vm.content.heading !== void 0 ? _c("pwHeading", { attrs: { "value": _vm.content.heading, "data-level": _vm.content.level } }) : _vm._e(), _vm.content.textmode === "textarea" ? _c("pwTextarea", { attrs: { "value": _vm.content.texttextarea } }) : _vm._e(), _vm.content.textmode === "writer" ? _c("pwWriter", { attrs: { "value": _vm.content.textwriter } }) : _vm._e(), _vm.content.textmode === "markdown" ? _c("pwMarkdown", { attrs: { "value": _vm.content.textmarkdown } }) : _vm._e(), _vm.content.buttons !== void 0 ? _c("pwButtons", { attrs: { "value": _vm.content.buttons } }) : _vm._e()], 1)])], 1);
+    return _c("div", { staticClass: "pwPreview", attrs: { "data-kirbyblock": "text", "data-margintop": _vm.content.margintop === true ? "true" : null, "data-marginbottom": _vm.content.marginbottom === true ? "true" : null }, on: { "dblclick": _vm.open } }, [_c("pwBlockinfo", { attrs: { "value": _vm.$t("kirbyblock-text.name"), "icon": "text-left", "layout": _vm.$t("pw.field.text-" + _vm.content.textmode) } }), _c("div", { staticClass: "pwGrid" }, [_c("div", { staticClass: "pwGridItem", style: _vm.gridVars, attrs: { "data-paddingtop": _vm.content.paddingtop === true ? "true" : null, "data-paddingbottom": _vm.content.paddingbottom === true ? "true" : null } }, [_vm.settings.tagline ? _c("pwTagline", { attrs: { "value": _vm.content.tagline } }) : _vm._e(), _vm.settings.heading ? _c("pwHeading", { attrs: { "value": _vm.content.heading, "data-level": _vm.content.level } }) : _vm._e(), _vm.content.textmode === "textarea" ? _c("pwTextarea", { attrs: { "value": _vm.content.texttextarea } }) : _vm._e(), _vm.content.textmode === "writer" ? _c("pwWriter", { attrs: { "value": _vm.content.textwriter } }) : _vm._e(), _vm.content.textmode === "markdown" ? _c("pwMarkdown", { attrs: { "value": _vm.content.textmarkdown } }) : _vm._e(), _vm.settings.buttons ? _c("pwButtons", { attrs: { "value": _vm.content.buttons } }) : _vm._e()], 1)])], 1);
   };
   var _sfc_staticRenderFns = [];
   _sfc_render._withStripped = true;

@@ -1,5 +1,9 @@
 <?php
 
+// Config
+$config   = pwConfig::load('pwtext', __DIR__ . '/../src/config');
+$settings = $config['settings'];
+
 // Custom Background
 if ($block->content()->style()->value() === 'custom'):
 	echo '<style>section[data-block-id="b'.$block->id().'"] { color: '.$block->content()->textcolor()->value().'; background-color: '.$block->content()->backgroundcolor()->value().' }</style>';
@@ -15,7 +19,7 @@ echo ' data-padding-top="'.$block->paddingtop()->value().'"';
 echo ' data-padding-bottom="'.$block->paddingbottom()->value().'"';
 echo ' data-style="'.$block->style()->value().'"';
 echo ' data-background-size="'.$block->backgroundsize()->value().'"';
-e($block->content()->style()->value() === 'custom' && $block->buttonstyle()->value() === 'variant', ' data-button-style="variant"');
+e(!empty($settings['buttons']) && $block->content()->style()->value() === 'custom' && $block->buttonstyle()->value() === 'variant', ' data-button-style="variant"');
 echo $block->fragment()->isNotEmpty() ? ' id="'.$block->fragment()->value().'"' : '';
 echo '>'."\n";
 
@@ -32,16 +36,22 @@ echo ' data-grid-offset-xl="'.$block->gridoffsetxl()->value().'"';
 echo '>'."\n";
 
 // Tagline
-snippet('tagline', ['content' => $block]);
+if (!empty($settings['tagline'])):
+	snippet('tagline', ['content' => $block]);
+endif;
 
 // Heading
-snippet('heading', ['content' => $block]);
+if (!empty($settings['heading'])):
+	snippet('heading', ['content' => $block]);
+endif;
 
 // Text
 snippet('text', ['content' => $block]);
 
 // Buttons
-snippet('buttons', ['content' => $block]);
+if (!empty($settings['buttons'])):
+	snippet('buttons', ['content' => $block]);
+endif;
 
 
 echo '</div></div>'."\n"; // End Grid

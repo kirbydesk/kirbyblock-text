@@ -22,10 +22,10 @@
 				>
 
 				<!-- Tagline -->
-				<pwTagline v-if="content.tagline !== undefined" :value="content.tagline" />
+				<pwTagline v-if="settings.tagline" :value="content.tagline" />
 
 				<!-- Heading -->
-				<pwHeading v-if="content.heading !== undefined" :value="content.heading" :data-level="content.level" />
+				<pwHeading v-if="settings.heading" :value="content.heading" :data-level="content.level" />
 
 				<!-- Textarea -->
 				<pwTextarea v-if="content.textmode === 'textarea'" :value="content.texttextarea" />
@@ -37,7 +37,7 @@
 				<pwMarkdown	v-if="content.textmode === 'markdown'" :value="content.textmarkdown" />
 
 				<!-- Buttons -->
-				<pwButtons v-if="content.buttons !== undefined" :value="content.buttons" />
+				<pwButtons v-if="settings.buttons" :value="content.buttons" />
 
 			</div>
 		</div>
@@ -65,5 +65,18 @@ export default {
 		pwButtons
 	},
 	mixins: [pwGridStyle],
+	data() {
+		return {
+			settings: {}
+		}
+	},
+	async created() {
+		try {
+			const response = await this.$api.get('pagewizard/settings/pwtext');
+			this.settings = response.settings;
+		} catch (e) {
+			this.settings = {};
+		}
+	}
 }
 </script>

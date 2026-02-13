@@ -1,28 +1,20 @@
 <?php return [ 'blocks/pwtext' => function () {
 
-    /* -------------- Block Defaults when not set in config.php --------------*/
-    $defaultsFile = __DIR__ . '/../config/defaults.json';
-    $defaults = file_exists($defaultsFile)
-      ? json_decode(file_get_contents($defaultsFile), true)
-      : [];
-		// Merge config with defaults
-    $raw = option('kirbydesk.pagewizard.kirbyblocks.pwtext', []);
-    $cfg = array_merge($defaults, is_array($raw) ? $raw : []);
+    /* -------------- Config --------------*/
+    $config   = pwConfig::load('pwtext', __DIR__ . '/../config');
+    $settings = $config['settings'];
+    $defaults = $config['defaults'];
 
     /* -------------- Text Mode --------------*/
-    $mode    = $cfg['text-mode'] ?? null;
+    $mode    = $defaults['text-mode'] ?? null;
     $mode    = is_string($mode) ? strtolower(trim($mode)) : null;
     $allowed = ['textarea', 'writer', 'markdown'];
     $type    = in_array($mode, $allowed, true) ? $mode : 'textarea';
 
     /* -------------- Allowed Fields --------------*/
-    $defaultHeading = !empty($cfg['heading']);
-    $defaultTagline = !empty($cfg['tagline']);
-		$defaultButtons = !empty($cfg['buttons']);
-
-		$defaultGrid = !empty($cfg['tab-grid']);
-    $defaultSpacing = !empty($cfg['tab-spacing']);
-		$defaultTheme = !empty($cfg['tab-theme']);
+    $defaultHeading = !empty($settings['heading']);
+    $defaultTagline = !empty($settings['tagline']);
+		$defaultButtons = !empty($settings['buttons']);
 
 		/* -------------- Tabs --------------*/
     $tabs = [];
@@ -70,46 +62,19 @@
 			'fields' => $contentFields,
 		];
 
-		/* -------------- Grid Tab --------------*/
-		if ($defaultGrid) {
-			$tabs['grid'] = pwGrid::layout('pwtext', [
-				'gridSizeSm'   => $defaults['grid-size-sm'],
-				'gridOffsetSm' => $defaults['grid-offset-sm'],
-				'gridSizeMd'   => $defaults['grid-size-md'],
-				'gridOffsetMd' => $defaults['grid-offset-md'],
-				'gridSizeLg'   => $defaults['grid-size-lg'],
-				'gridOffsetLg' => $defaults['grid-offset-lg'],
-				'gridSizeXl'   => $defaults['grid-size-xl'],
-				'gridOffsetXl' => $defaults['grid-offset-xl'],
-			]);
-		}
+		/* -------------- Common Tabs (grid, spacing, theme) --------------*/
+		pwConfig::buildTabs('pwtext', $defaults, $settings, $tabs);
 
-		/* -------------- Spacing Tab --------------*/
-		if ($defaultSpacing) {
-			$tabs['spacing'] = pwSpacing::options('pwtext', [
-				'marginTop'    => $defaults['margin-top'],
-				'marginBottom' => $defaults['margin-bottom'],
-				'paddingTop'   => $defaults['padding-top'],
-				'paddingBottom'=> $defaults['padding-bottom'],
-			]);
-		}
-
-		/* -------------- Theme Tab --------------*/
-		if ($defaultTheme) {
-			$tabs['theme'] = pwTheme::options('pwtext', [
-				'style' => $defaults['style'] ?? 'default',
-			]);
-		}
-
+		/* -------------- Properties Tab --------------*/
 		$tabs['properties'] = [
-      'label'  => 'pw.tab.properties',
-      'fields' => [
+			'label'  => 'pw.tab.properties',
+			'fields' => [
 				'headlineProperties' => ['extends' => 'pagewizard/headlines/blockproperties'],
-        'fragment' => [
-          'extends' => 'pagewizard/fields/fragment'
-        ]
-      ]
-    ];
+				'fragment' => [
+					'extends' => 'pagewizard/fields/fragment'
+				]
+			]
+		];
 
 		$tabs['settings'] = [
       'label'  => 'pw.tab.settings',
