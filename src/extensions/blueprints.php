@@ -1,7 +1,7 @@
 <?php return [ 'blocks/pwtext' => function () {
 
     /* -------------- Config --------------*/
-    $config   = pwConfig::load('pwtext', __DIR__ . '/../config');
+    $config   = pwConfig::load('pwtext');
     $settings = $config['settings'];
     $defaults = $config['defaults'];
 

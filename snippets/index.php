@@ -1,7 +1,7 @@
 <?php
 
 // Config
-$config   = pwConfig::load('pwtext', __DIR__ . '/../src/config');
+$config   = pwConfig::load('pwtext');
 $settings = $config['settings'];
 
 // Custom Background

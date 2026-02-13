@@ -1,7 +1,7 @@
 {
-  "heading": false,
-  "tagline": false,
-  "buttons": false,
+  "heading": true,
+  "tagline": true,
+  "buttons": true,
   "tab-grid": true,
   "tab-spacing": true,
   "tab-theme": true

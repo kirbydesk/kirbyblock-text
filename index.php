@@ -1,4 +1,8 @@
-<?php Kirby::plugin('kirbydesk/kirbyblock-text', [
+<?php
+
+pwConfig::register('pwtext', __DIR__ . '/src/config');
+
+Kirby::plugin('kirbydesk/kirbyblock-text', [
 
 	/* -------------- Extensions --------------*/
 	'blueprints' => require_once 'src/extensions/blueprints.php',
