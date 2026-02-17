@@ -3,6 +3,7 @@
 		class="pwPreview"
 		data-kirbyblock="text"
 		@dblclick="open"
+		:style="colorVars"
 		:data-margintop="content.margintop === true ? 'true' : null"
 		:data-marginbottom="content.marginbottom === true ? 'true' : null"
 		>
@@ -55,6 +56,7 @@ import pwWriter from '@/../../kirby-pagewizard/src/components/writer.vue'
 import pwMarkdown from '@/../../kirby-pagewizard/src/components/markdown.vue'
 import pwButtons from '@/../../kirby-pagewizard/src/components/buttons.vue'
 import pwGridStyle from '@/../../kirby-pagewizard/src/mixins/gridStyle.js';
+import pwColorStyle from '@/../../kirby-pagewizard/src/mixins/colorStyle.js';
 
 export default {
 	components: {
@@ -66,7 +68,7 @@ export default {
 		pwMarkdown,
 		pwButtons
 	},
-	mixins: [pwGridStyle],
+	mixins: [pwGridStyle, pwColorStyle],
 	data() {
 		return {
 			settings: {}
