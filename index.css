@@ -84,6 +84,12 @@ div.pwtext[data-v-05c2d6ed] {
 
 div.pwtext[data-v-fa3feda4] {
   font-size: var(--text-sm);
+&[data-align="left"][data-v-fa3feda4] { text-align: left;
+}
+&[data-align="center"][data-v-fa3feda4] { text-align: center;
+}
+&[data-align="right"][data-v-fa3feda4] { text-align: right;
+}
 [data-v-fa3feda4] h1 {
 		font-size: var(--text-2xl);
 		font-weight: var(--font-normal);
@@ -126,6 +132,12 @@ div.pwtext[data-v-fa3feda4] {
 
 .pwMarkdown {
   line-height: var(--text-line-height);
+&[data-align="left"] { text-align: left;
+}
+&[data-align="center"] { text-align: center;
+}
+&[data-align="right"] { text-align: right;
+}
 h1, h2, h3, h4, h5, h6 {
 		font-weight: bold;
 		margin:  0 0 .7em 0;
@@ -196,6 +208,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .k-button-group[data-v-7bc2765d] {
 	margin: var(--spacing-4) 0 var(--spacing-2);
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--spacing-2);
+&[data-align="left"][data-v-7bc2765d] { justify-content: flex-start;
+}
+&[data-align="center"][data-v-7bc2765d] { justify-content: center;
+}
+&[data-align="right"][data-v-7bc2765d] { justify-content: flex-end;
+}
 }
 button[data-v-7bc2765d] {
 	padding: var(--spacing-4) var(--spacing-2);

@@ -189,12 +189,13 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
   const pwTextarea = __component__$4.exports;
   const _sfc_main$3 = {
     props: {
-      value: String
+      value: String,
+      align: { type: String, default: "left" }
     }
   };
   var _sfc_render$3 = function render() {
     var _vm = this, _c = _vm._self._c;
-    return _c("div", { staticClass: "pwtext" }, [_vm.value ? _c("div", { domProps: { "innerHTML": _vm._s(_vm.value) } }) : _c("div", { staticClass: "placeholder" }, [_vm._v(" " + _vm._s(_vm.$t("pw.field.text-writer.placeholder")) + " ")])]);
+    return _c("div", { staticClass: "pwtext", attrs: { "data-align": _vm.align } }, [_vm.value ? _c("div", { domProps: { "innerHTML": _vm._s(_vm.value) } }) : _c("div", { staticClass: "placeholder" }, [_vm._v(" " + _vm._s(_vm.$t("pw.field.text-writer.placeholder")) + " ")])]);
   };
   var _sfc_staticRenderFns$3 = [];
   _sfc_render$3._withStripped = true;
@@ -1313,7 +1314,8 @@ Please report this to https://github.com/markedjs/marked.`, e) {
   k.setOptions({ breaks: true });
   const _sfc_main$2 = {
     props: {
-      value: String
+      value: String,
+      align: { type: String, default: "left" }
     },
     computed: {
       renderedMarkdown() {
@@ -1324,7 +1326,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
   };
   var _sfc_render$2 = function render() {
     var _vm = this, _c = _vm._self._c;
-    return _c("div", { staticClass: "pwMarkdown" }, [_vm.value ? _c("div", { domProps: { "innerHTML": _vm._s(_vm.renderedMarkdown) } }) : _c("div", { staticClass: "placeholder" }, [_vm._v(" " + _vm._s(_vm.$t("pw.field.text-markdown.placeholder")) + " ")])]);
+    return _c("div", { staticClass: "pwMarkdown", attrs: { "data-align": _vm.align } }, [_vm.value ? _c("div", { domProps: { "innerHTML": _vm._s(_vm.renderedMarkdown) } }) : _c("div", { staticClass: "placeholder" }, [_vm._v(" " + _vm._s(_vm.$t("pw.field.text-markdown.placeholder")) + " ")])]);
   };
   var _sfc_staticRenderFns$2 = [];
   _sfc_render$2._withStripped = true;
@@ -1340,12 +1342,16 @@ Please report this to https://github.com/markedjs/marked.`, e) {
   const pwMarkdown = __component__$2.exports;
   const _sfc_main$1 = {
     props: {
-      value: String
+      value: String,
+      align: {
+        type: String,
+        default: "left"
+      }
     }
   };
   var _sfc_render$1 = function render() {
     var _vm = this, _c = _vm._self._c;
-    return _vm.value && _vm.value.length ? _c("div", { staticClass: "k-button-group" }, _vm._l(_vm.value, function(item) {
+    return _vm.value && _vm.value.length ? _c("div", { staticClass: "k-button-group", attrs: { "data-align": _vm.align } }, _vm._l(_vm.value, function(item) {
       return _c("div", { key: item.id, class: { "ishidden": item.isHidden } }, [_c("button", { staticClass: "k-button", attrs: { "type": "button", "data-has-text": "true", "data-responsive": "true", "data-size": "md", "data-variant": "filled" } }, [item.content.linktext.length ? _c("span", { staticClass: "k-button-text" }, [_vm._v(" " + _vm._s(item.content.linktext) + " ")]) : _c("span", { staticClass: "k-button-text placeholder" }, [_vm._v(" " + _vm._s(_vm.$t("pw.field.link-text.placeholder")) + " ")])])]);
     }), 0) : _vm._e();
   };
@@ -1404,7 +1410,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
   };
   var _sfc_render = function render() {
     var _vm = this, _c = _vm._self._c;
-    return _c("div", { staticClass: "pwPreview", attrs: { "data-kirbyblock": "text", "data-margintop": _vm.content.margintop === true ? "true" : null, "data-marginbottom": _vm.content.marginbottom === true ? "true" : null }, on: { "dblclick": _vm.open } }, [_c("pwBlockinfo", { attrs: { "value": _vm.$t("kirbyblock-text.name"), "icon": "text-left", "layout": _vm.$t("pw.field.text-" + _vm.content.textmode) } }), _c("div", { staticClass: "pwGrid" }, [_c("div", { staticClass: "pwGridItem", style: _vm.gridVars, attrs: { "data-paddingtop": _vm.content.paddingtop === true ? "true" : null, "data-paddingbottom": _vm.content.paddingbottom === true ? "true" : null } }, [_vm.settings.tagline ? _c("pwTagline", { attrs: { "value": _vm.content.tagline } }) : _vm._e(), _vm.settings.heading ? _c("pwHeading", { attrs: { "value": _vm.content.heading, "data-level": _vm.content.level } }) : _vm._e(), _vm.content.textmode === "textarea" ? _c("pwTextarea", { attrs: { "value": _vm.content.texttextarea } }) : _vm._e(), _vm.content.textmode === "writer" ? _c("pwWriter", { attrs: { "value": _vm.content.textwriter } }) : _vm._e(), _vm.content.textmode === "markdown" ? _c("pwMarkdown", { attrs: { "value": _vm.content.textmarkdown } }) : _vm._e(), _vm.settings.buttons ? _c("pwButtons", { attrs: { "value": _vm.content.buttons } }) : _vm._e()], 1)])], 1);
+    return _c("div", { staticClass: "pwPreview", attrs: { "data-kirbyblock": "text", "data-margintop": _vm.content.margintop === true ? "true" : null, "data-marginbottom": _vm.content.marginbottom === true ? "true" : null }, on: { "dblclick": _vm.open } }, [_c("pwBlockinfo", { attrs: { "value": _vm.$t("kirbyblock-text.name"), "icon": "text-left", "layout": _vm.$t("pw.field.text-" + _vm.content.textmode) } }), _c("div", { staticClass: "pwGrid" }, [_c("div", { staticClass: "pwGridItem", style: _vm.gridVars, attrs: { "data-paddingtop": _vm.content.paddingtop === true ? "true" : null, "data-paddingright": _vm.content.paddingright === true ? "true" : null, "data-paddingbottom": _vm.content.paddingbottom === true ? "true" : null, "data-paddingleft": _vm.content.paddingleft === true ? "true" : null } }, [_vm.settings.tagline ? _c("pwTagline", { attrs: { "value": _vm.content.tagline } }) : _vm._e(), _vm.settings.heading ? _c("pwHeading", { attrs: { "value": _vm.content.heading, "data-level": _vm.content.level } }) : _vm._e(), _vm.content.textmode === "textarea" ? _c("pwTextarea", { attrs: { "value": _vm.content.texttextarea } }) : _vm._e(), _vm.content.textmode === "writer" ? _c("pwWriter", { attrs: { "value": _vm.content.textwriter, "align": _vm.content.textwriteralignment } }) : _vm._e(), _vm.content.textmode === "markdown" ? _c("pwMarkdown", { attrs: { "value": _vm.content.textmarkdown, "align": _vm.content.textmarkdownalignment } }) : _vm._e(), _vm.settings.buttons ? _c("pwButtons", { attrs: { "value": _vm.content.buttons, "align": _vm.content.buttonsalignment } }) : _vm._e()], 1)])], 1);
   };
   var _sfc_staticRenderFns = [];
   _sfc_render._withStripped = true;

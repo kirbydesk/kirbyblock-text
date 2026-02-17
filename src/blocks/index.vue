@@ -18,7 +18,9 @@
 				class="pwGridItem"
 				:style="gridVars"
 				:data-paddingtop="content.paddingtop === true ? 'true' : null"
+				:data-paddingright="content.paddingright === true ? 'true' : null"
 				:data-paddingbottom="content.paddingbottom === true ? 'true' : null"
+				:data-paddingleft="content.paddingleft === true ? 'true' : null"
 				>
 
 				<!-- Tagline -->
@@ -31,13 +33,13 @@
 				<pwTextarea v-if="content.textmode === 'textarea'" :value="content.texttextarea" />
 
 				<!-- Writer -->
-				<pwWriter	v-if="content.textmode === 'writer'" :value="content.textwriter" />
+				<pwWriter	v-if="content.textmode === 'writer'" :value="content.textwriter" :align="content.textwriteralignment" />
 
 				<!-- Markdown -->
-				<pwMarkdown	v-if="content.textmode === 'markdown'" :value="content.textmarkdown" />
+				<pwMarkdown	v-if="content.textmode === 'markdown'" :value="content.textmarkdown" :align="content.textmarkdownalignment" />
 
 				<!-- Buttons -->
-				<pwButtons v-if="settings.buttons" :value="content.buttons" />
+				<pwButtons v-if="settings.buttons" :value="content.buttons" :align="content.buttonsalignment" />
 
 			</div>
 		</div>

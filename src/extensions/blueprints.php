@@ -21,7 +21,7 @@
 
 		/* -------------- Content Tab --------------*/
 		$contentFields = [
-			'headlineContent' => ['extends' => 'pagewizard/headlines/blockcontent'],
+			'headlineContent' => ['extends' => 'pagewizard/headlines/content'],
 		];
 
 		/* -------------- Tagline --------------*/
@@ -41,9 +41,19 @@
 			'extends' => 'pagewizard/fields/text-textarea',
 			'when'    => ['textMode' => 'textarea'],
 		];
+		$contentFields['textWriterAlignment'] = [
+			'type' => 'pwalign',
+			'default' => $defaults['text-alignment'] ?? 'left',
+			'when'    => ['textMode' => 'writer'],
+		];
 		$contentFields['textWriter'] = [
 			'extends' => 'pagewizard/fields/text-writer',
 			'when'    => ['textMode' => 'writer'],
+		];
+		$contentFields['textMarkdownAlignment'] = [
+			'type' => 'pwalign',
+			'default' => $defaults['text-alignment'] ?? 'left',
+			'when'    => ['textMode' => 'markdown'],
 		];
 		$contentFields['textMarkdown'] = [
 			'extends' => 'pagewizard/fields/text-markdown',
@@ -52,6 +62,10 @@
 
 		/* -------------- Buttons --------------*/
 		if ($defaultButtons) {
+			$contentFields['buttonsAlignment'] = [
+				'type' => 'pwalign',
+				'default' => $defaults['buttons-alignment'] ?? 'left',
+			];
 			$contentFields['buttons'] = [
 				'extends' => 'blocks/pwButtons',
 			];
@@ -62,31 +76,24 @@
 			'fields' => $contentFields,
 		];
 
+		/* -------------- Layout Tab --------------*/
+		$tabs['layout'] = pwLayout::options('pwtext', $defaults);
+
+		/* -------------- Style Tab --------------*/
+		$tabs['style'] = pwStyle::options('pwtext', $defaults);
+
 		/* -------------- Common Tabs (grid, spacing, theme) --------------*/
 		pwConfig::buildTabs('pwtext', $defaults, $settings, $tabs);
 
-		/* -------------- Properties Tab --------------*/
-		$tabs['properties'] = [
-			'label'  => 'pw.tab.properties',
-			'fields' => [
-				'headlineProperties' => ['extends' => 'pagewizard/headlines/blockproperties'],
-				'fragment' => [
-					'extends' => 'pagewizard/fields/fragment'
-				]
-			]
-		];
-
-		$tabs['settings'] = [
-      'label'  => 'pw.tab.settings',
-      'fields' => [
-				'headlineEditorsettings' => ['extends' => 'pagewizard/headlines/editorsettings'],
-        'textMode' => [
-          'extends' => 'pagewizard/fields/text-mode',
-          'default' => $type,
-          'help'    => t('pw.field.text-mode.help') . ' <code>' . t('pw.option.'.$mode) . '</code>'
-        ],
-      ]
-    ];
+		/* -------------- Settings Tab --------------*/
+		$tabs['settings'] = pwSettings::options('pwtext', $defaults, [
+			'headlineEditorsettings' => ['extends' => 'pagewizard/headlines/editorsettings'],
+			'textMode' => [
+				'extends' => 'pagewizard/fields/text-mode',
+				'default' => $type,
+				'help'    => t('pw.field.text-mode.help') . ' <code>' . t('pw.option.'.$mode) . '</code>'
+			],
+		]);
 
 		/* -------------- Blueprint --------------*/
 		return [
