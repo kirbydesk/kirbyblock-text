@@ -47,8 +47,10 @@ if (!empty($settings['heading'])):
 	snippet('heading', ['content' => $block]);
 endif;
 
-// Text
-snippet('text', ['content' => $block]);
+// Editor
+if (!empty($settings['editor'])):
+	snippet('editor', ['content' => $block]);
+endif;
 
 // Buttons
 if (!empty($settings['buttons'])):

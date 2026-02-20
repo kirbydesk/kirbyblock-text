@@ -1,6 +1,7 @@
 {
-  "heading": true,
   "tagline": true,
+  "heading": true,
+  "editor": ["textarea", "writer", "markdown"],
   "buttons": true,
   "tab-grid": true
 }

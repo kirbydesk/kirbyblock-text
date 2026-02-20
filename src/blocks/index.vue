@@ -11,7 +11,7 @@
 		<pwBlockinfo
 			:value="$t('kirbyblock-text.name')"
 			icon="text-left"
-			:layout="$t('pw.field.text-' + content.textmode)"
+			:layout="$t('pw.field.text-' + editorMode)"
 		/>
 
 		<div class="pwGrid">
@@ -30,14 +30,8 @@
 				<!-- Heading -->
 				<pwHeading v-if="settings.heading" :value="content.heading" :data-level="content.level" />
 
-				<!-- Textarea -->
-				<pwTextarea v-if="content.textmode === 'textarea'" :value="content.texttextarea" />
-
-				<!-- Writer -->
-				<pwWriter	v-if="content.textmode === 'writer'" :value="content.textwriter" :align="content.textwriteralignment" />
-
-				<!-- Markdown -->
-				<pwMarkdown	v-if="content.textmode === 'markdown'" :value="content.textmarkdown" :align="content.textmarkdownalignment" />
+				<!-- Editor -->
+				<pwEditor v-if="settings.editor" :content="content" />
 
 				<!-- Buttons -->
 				<pwButtons v-if="settings.buttons" :value="content.buttons" :align="content.buttonsalignment" />
@@ -51,9 +45,7 @@
 import pwBlockinfo from '@/../../kirby-pagewizard/src/components/blockinfo.vue'
 import pwTagline from '@/../../kirby-pagewizard/src/components/tagline.vue'
 import pwHeading from '@/../../kirby-pagewizard/src/components/heading.vue'
-import pwTextarea from '@/../../kirby-pagewizard/src/components/textarea.vue'
-import pwWriter from '@/../../kirby-pagewizard/src/components/writer.vue'
-import pwMarkdown from '@/../../kirby-pagewizard/src/components/markdown.vue'
+import pwEditor from '@/../../kirby-pagewizard/src/components/editor.vue'
 import pwButtons from '@/../../kirby-pagewizard/src/components/buttons.vue'
 import pwGridStyle from '@/../../kirby-pagewizard/src/mixins/gridStyle.js';
 import pwColorStyle from '@/../../kirby-pagewizard/src/mixins/colorStyle.js';
@@ -63,15 +55,23 @@ export default {
 		pwBlockinfo,
 		pwTagline,
 		pwHeading,
-		pwTextarea,
-		pwWriter,
-		pwMarkdown,
+		pwEditor,
 		pwButtons
 	},
 	mixins: [pwGridStyle, pwColorStyle],
 	data() {
 		return {
 			settings: {}
+		}
+	},
+	computed: {
+		editorMode() {
+			try {
+				const data = JSON.parse(this.content.editor);
+				return data.mode || 'textarea';
+			} catch(e) {
+				return 'textarea';
+			}
 		}
 	},
 	async created() {
