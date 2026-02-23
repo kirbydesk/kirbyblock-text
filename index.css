@@ -25,6 +25,7 @@ svg[data-v-26526d24] {
 div.pwTagline[data-v-2287a490] {
   font-size: var(--text-sm);
 	line-height: var(--text-line-height);
+	text-transform: uppercase;
 	margin-bottom: var(--spacing-1);
 	color: var(--pw-color-tagline, inherit);
 &[data-align="left"][data-v-2287a490] {
@@ -210,6 +211,10 @@ h1, h2, h3, h4, h5, h6 {
   margin: 2em 0;
 }
 
+
+div.pwEditor[data-v-abf2a9f7] {
+	margin-bottom: var(--spacing-4);
+}
 
 .k-button-group[data-v-7bc2765d] {
 	margin: var(--spacing-4) 0 var(--spacing-2);

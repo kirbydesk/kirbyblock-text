@@ -48,17 +48,18 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       content: {
         type: Object,
         default: () => ({})
-      }
+      },
+      alignDefault: { type: String, default: "left" }
     },
     computed: {
       parsedData() {
         var _a2;
         const val = ((_a2 = this.content) == null ? void 0 : _a2.tagline) || this.value;
-        if (!val) return { text: "", align: "left" };
+        if (!val) return { text: "", align: this.alignDefault };
         try {
           return typeof val === "string" ? JSON.parse(val) : val;
         } catch (e) {
-          return { text: val, align: "left" };
+          return { text: val, align: this.alignDefault };
         }
       },
       text() {
@@ -66,7 +67,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         return text;
       },
       align() {
-        const { align = "left" } = this.parsedData;
+        const { align = this.alignDefault } = this.parsedData;
         return align;
       }
     }
@@ -93,17 +94,18 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       content: {
         type: Object,
         default: () => ({})
-      }
+      },
+      alignDefault: { type: String, default: "left" }
     },
     computed: {
       parsedData() {
         var _a2;
         const val = ((_a2 = this.content) == null ? void 0 : _a2.heading) || this.value;
-        if (!val) return { text: "", level: "h2", align: "left" };
+        if (!val) return { text: "", level: "h2", align: this.alignDefault };
         try {
           return typeof val === "string" ? JSON.parse(val) : val;
         } catch (e) {
-          return { text: val, level: "h2", align: "left" };
+          return { text: val, level: "h2", align: this.alignDefault };
         }
       },
       text() {
@@ -115,7 +117,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         return level;
       },
       align() {
-        const { align = "left" } = this.parsedData;
+        const { align = this.alignDefault } = this.parsedData;
         return align;
       }
     }
@@ -1328,19 +1330,20 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       content: {
         type: Object,
         default: () => ({})
-      }
+      },
+      alignDefault: { type: String, default: "left" }
     },
     computed: {
       parsed() {
         var _a2;
         const val = (_a2 = this.content) == null ? void 0 : _a2.editor;
-        if (!val) return { mode: "textarea", text: "", align: "left" };
+        if (!val) return { mode: "textarea", text: "", align: this.alignDefault };
         try {
           const data = typeof val === "string" ? JSON.parse(val) : val;
           const mode = data.mode || "textarea";
-          return { mode, text: data[mode] || "", align: data.align || "left" };
+          return { mode, text: data[mode] || "", align: data.align || this.alignDefault };
         } catch (e) {
-          return { mode: "textarea", text: "", align: "left" };
+          return { mode: "textarea", text: "", align: this.alignDefault };
         }
       },
       mode() {
@@ -1350,13 +1353,13 @@ Please report this to https://github.com/markedjs/marked.`, e) {
         return this.parsed.text;
       },
       align() {
-        return this.parsed.align;
+        return this.parsed.align || this.alignDefault;
       }
     }
   };
   var _sfc_render$2 = function render() {
     var _vm = this, _c = _vm._self._c;
-    return _c("div", { staticClass: "pw-editor" }, [_vm.mode === "textarea" ? _c("pw-textarea", { attrs: { "value": _vm.text, "align": _vm.align } }) : _vm.mode === "writer" ? _c("pw-writer", { attrs: { "value": _vm.text, "align": _vm.align } }) : _vm.mode === "markdown" ? _c("pw-markdown", { attrs: { "value": _vm.text, "align": _vm.align } }) : _c("div", { staticClass: "placeholder" }, [_vm._v(" " + _vm._s(_vm.$t("pw.field.text-textarea.placeholder")) + " ")])], 1);
+    return _c("div", { staticClass: "pwEditor" }, [_vm.mode === "textarea" ? _c("pw-textarea", { attrs: { "value": _vm.text, "align": _vm.align } }) : _vm.mode === "writer" ? _c("pw-writer", { attrs: { "value": _vm.text, "align": _vm.align } }) : _vm.mode === "markdown" ? _c("pw-markdown", { attrs: { "value": _vm.text, "align": _vm.align } }) : _c("div", { staticClass: "placeholder" }, [_vm._v(" " + _vm._s(_vm.$t("pw.field.text-textarea.placeholder")) + " ")])], 1);
   };
   var _sfc_staticRenderFns$2 = [];
   _sfc_render$2._withStripped = true;
@@ -1366,7 +1369,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
     _sfc_staticRenderFns$2,
     false,
     null,
-    null
+    "abf2a9f7"
   );
   __component__$2.options.__file = "/Users/christian/Projects/kirbydesk/site/plugins/kirby-pagewizard/src/components/editor.vue";
   const pwEditor = __component__$2.exports;
@@ -1474,7 +1477,8 @@ Please report this to https://github.com/markedjs/marked.`, e) {
     mixins: [pwGridStyle, pwColorStyle],
     data() {
       return {
-        settings: {}
+        settings: {},
+        fieldDefaults: {}
       };
     },
     computed: {
@@ -1491,6 +1495,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       try {
         const response = await this.$api.get("pagewizard/settings/pwtext");
         this.settings = response.settings;
+        this.fieldDefaults = response.fields || {};
       } catch (e) {
         this.settings = {};
       }
@@ -1498,7 +1503,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
   };
   var _sfc_render = function render() {
     var _vm = this, _c = _vm._self._c;
-    return _c("div", { staticClass: "pwPreview", style: _vm.colorVars, attrs: { "data-kirbyblock": "text", "data-margintop": _vm.content.margintop === true ? "true" : null, "data-marginbottom": _vm.content.marginbottom === true ? "true" : null }, on: { "dblclick": _vm.open } }, [_c("pwBlockinfo", { attrs: { "value": _vm.$t("kirbyblock-text.name"), "icon": "text-left", "layout": _vm.$t("pw.field.text-" + _vm.editorMode) } }), _c("div", { staticClass: "pwGrid" }, [_c("div", { staticClass: "pwGridItem", style: _vm.gridVars, attrs: { "data-paddingtop": _vm.content.paddingtop === true ? "true" : null, "data-paddingright": _vm.content.paddingright === true ? "true" : null, "data-paddingbottom": _vm.content.paddingbottom === true ? "true" : null, "data-paddingleft": _vm.content.paddingleft === true ? "true" : null } }, [_vm.settings.tagline ? _c("pwTagline", { attrs: { "value": _vm.content.tagline } }) : _vm._e(), _vm.settings.heading ? _c("pwHeading", { attrs: { "value": _vm.content.heading, "data-level": _vm.content.level } }) : _vm._e(), _vm.settings.editor ? _c("pwEditor", { attrs: { "content": _vm.content } }) : _vm._e(), _vm.settings.buttons ? _c("pwButtons", { attrs: { "value": _vm.content.buttons, "align": _vm.content.buttonsalignment } }) : _vm._e()], 1)])], 1);
+    return _c("div", { staticClass: "pwPreview", style: _vm.colorVars, attrs: { "data-kirbyblock": "text", "data-margintop": _vm.content.margintop === true ? "true" : null, "data-marginbottom": _vm.content.marginbottom === true ? "true" : null }, on: { "dblclick": _vm.open } }, [_c("pwBlockinfo", { attrs: { "value": _vm.$t("kirbyblock-text.name"), "icon": "text-left", "layout": _vm.$t("pw.field.text-" + _vm.editorMode) } }), _c("div", { staticClass: "pwGrid" }, [_c("div", { staticClass: "pwGridItem", style: _vm.gridVars, attrs: { "data-paddingtop": _vm.content.paddingtop === true ? "true" : null, "data-paddingright": _vm.content.paddingright === true ? "true" : null, "data-paddingbottom": _vm.content.paddingbottom === true ? "true" : null, "data-paddingleft": _vm.content.paddingleft === true ? "true" : null } }, [_vm.settings.tagline ? _c("pwTagline", { attrs: { "value": _vm.content.tagline, "alignDefault": _vm.fieldDefaults["align-tagline"] } }) : _vm._e(), _vm.settings.heading ? _c("pwHeading", { attrs: { "value": _vm.content.heading, "data-level": _vm.content.level, "alignDefault": _vm.fieldDefaults["align-heading"] } }) : _vm._e(), _vm.settings.editor ? _c("pwEditor", { attrs: { "content": _vm.content, "alignDefault": _vm.fieldDefaults["align-editor"] } }) : _vm._e(), _vm.settings.buttons ? _c("pwButtons", { attrs: { "value": _vm.content.buttons, "align": _vm.content.buttonsalignment || _vm.fieldDefaults["align-buttons"] } }) : _vm._e()], 1)])], 1);
   };
   var _sfc_staticRenderFns = [];
   _sfc_render._withStripped = true;

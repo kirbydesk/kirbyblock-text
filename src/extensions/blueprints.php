@@ -1,9 +1,12 @@
 <?php return [ 'blocks/pwtext' => function () {
 
 	/* -------------- Config --------------*/
-	$config   = pwConfig::load('pwtext');
-	$settings = $config['settings'];
-	$defaults = $config['defaults'];
+	$config      = pwConfig::load('pwtext');
+	$settings    = $config['settings'];
+	$tabSettings = $config['tabs'];
+	$defaults    = $config['defaults'];
+	$fields      = $config['fields'];
+	$editor      = $config['editor'];
 
 	/* -------------- Allowed Fields --------------*/
 	$defaultTagline = !empty($settings['tagline']);
@@ -12,7 +15,7 @@
 	$defaultButtons = !empty($settings['buttons']);
 
 	/* -------------- Tabs --------------*/
-    $tabs = [];
+	$tabs = [];
 
 	/* -------------- Content Tab --------------*/
 	$contentFields = [
@@ -23,35 +26,26 @@
 	if ($defaultTagline) {
 		$contentFields['tagline'] = [
 			'extends' => 'pagewizard/fields/tagline',
+			'align'   => $fields['align-tagline'],
 		];
 	}
 	/* -------------- Heading --------------*/
 	if ($defaultHeading) {
 		$contentFields['heading'] = [
 			'extends' => 'pagewizard/fields/heading',
+			'align'   => $fields['align-heading'],
 		];
 	}
 	/* -------------- Editor --------------*/
 	if ($defaultEditor) {
-		$editorConfigFile = __DIR__ . '/../config/editor.json';
-		$editorConfig = file_exists($editorConfigFile)
-			? json_decode(file_get_contents($editorConfigFile), true) ?? []
-			: [];
-
-		// Apply config.php overrides for editor.json options
-		$rawCfg = option('kirbydesk.pagewizard.kirbyblocks.pwtext', []);
-		if (!empty($rawCfg['editor']) && is_array($rawCfg['editor'])) {
-			$editorConfig = array_merge($editorConfig, $rawCfg['editor']);
-		}
-
-		$contentFields['editor'] = pwEditor::contentField($defaults, $editorConfig, $settings);
+		$contentFields['editor'] = pwEditor::contentField($defaults, $editor, $settings, $fields);
 	}
-
 	/* -------------- Buttons --------------*/
 	if ($defaultButtons) {
 		$contentFields['buttonsAlignment'] = [
-			'type' => 'pwalign',
-			'default' => $defaults['buttons-alignment'] ?? 'left',
+			'type'    => 'pwalign',
+			'align'   => $fields['align-buttons'],
+			'default' => $fields['align-buttons'],
 		];
 		$contentFields['buttons'] = [
 			'extends' => 'blocks/pwButtons',
@@ -70,7 +64,7 @@
 	$tabs['style'] = pwStyle::options('pwtext', $defaults);
 
 	/* -------------- Common Tabs (grid, spacing, theme) --------------*/
-	pwConfig::buildTabs('pwtext', $defaults, $settings, $tabs);
+	pwConfig::buildTabs('pwtext', $defaults, $tabSettings, $tabs);
 
 	/* -------------- Settings Tab --------------*/
 	$tabs['settings'] = pwSettings::options('pwtext', $defaults);

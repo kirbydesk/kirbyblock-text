@@ -25,16 +25,16 @@
 				>
 
 				<!-- Tagline -->
-				<pwTagline v-if="settings.tagline" :value="content.tagline" />
+				<pwTagline v-if="settings.tagline" :value="content.tagline" :alignDefault="fieldDefaults['align-tagline']" />
 
 				<!-- Heading -->
-				<pwHeading v-if="settings.heading" :value="content.heading" :data-level="content.level" />
+				<pwHeading v-if="settings.heading" :value="content.heading" :data-level="content.level" :alignDefault="fieldDefaults['align-heading']" />
 
 				<!-- Editor -->
-				<pwEditor v-if="settings.editor" :content="content" />
+				<pwEditor v-if="settings.editor" :content="content" :alignDefault="fieldDefaults['align-editor']" />
 
 				<!-- Buttons -->
-				<pwButtons v-if="settings.buttons" :value="content.buttons" :align="content.buttonsalignment" />
+				<pwButtons v-if="settings.buttons" :value="content.buttons" :align="content.buttonsalignment || fieldDefaults['align-buttons']" />
 
 			</div>
 		</div>
@@ -61,7 +61,8 @@ export default {
 	mixins: [pwGridStyle, pwColorStyle],
 	data() {
 		return {
-			settings: {}
+			settings: {},
+			fieldDefaults: {}
 		}
 	},
 	computed: {
@@ -78,6 +79,7 @@ export default {
 		try {
 			const response = await this.$api.get('pagewizard/settings/pwtext');
 			this.settings = response.settings;
+			this.fieldDefaults = response.fields || {};
 		} catch (e) {
 			this.settings = {};
 		}
