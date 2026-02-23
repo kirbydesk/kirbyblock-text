@@ -26,14 +26,14 @@
 	if ($defaultTagline) {
 		$contentFields['tagline'] = [
 			'extends' => 'pagewizard/fields/tagline',
-			'align'   => $fields['align-tagline'],
+			'align'   => $fields['align-tagline']
 		];
 	}
 	/* -------------- Heading --------------*/
 	if ($defaultHeading) {
 		$contentFields['heading'] = [
 			'extends' => 'pagewizard/fields/heading',
-			'align'   => $fields['align-heading'],
+			'align'   => $fields['align-heading']
 		];
 	}
 	/* -------------- Editor --------------*/
