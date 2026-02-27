@@ -1,3 +1,38 @@
 section[data-block="text"] {
 
+	/* -------------- Tagline Margins--------------*/
+	[data-field="tagline"] {
+		+ [data-field="heading"] {
+			margin-top: 0.5rem;
+		}
+		+ [data-field="textarea"],
+		+ [data-field="writer"],
+		+ [data-field="markdown"] {
+			margin-top: 0.3rem;
+		}
+		+ [data-field="buttons"] {
+			margin-top: 1rem;
+		}
+	}
+
+	/* -------------- Heading Margins--------------*/
+	[data-field="heading"] {
+		+ [data-field="textarea"],
+		+ [data-field="writer"],
+		+ [data-field="markdown"] {
+			margin-top: 0.5rem;
+		}
+		+ [data-field="buttons"] {
+			margin-top: 1.2rem;
+		}
+	}
+
+	/* -------------- Texts Margins--------------*/
+	[data-field="textarea"],
+	[data-field="writer"],
+	[data-field="markdown"] {
+		+ [data-field="buttons"] {
+			margin-top: 1.2rem;
+		}
+	}
 }
