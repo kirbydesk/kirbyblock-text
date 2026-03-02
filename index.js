@@ -1432,7 +1432,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
     computed: {
       colorVars() {
         if (!this.colors) return {};
-        const style = this.content.style || "default";
+        const style = this.content.theme || "default";
         const vars = {};
         if (style === "custom") {
           for (const [key, value] of Object.entries(this.colors.default)) {

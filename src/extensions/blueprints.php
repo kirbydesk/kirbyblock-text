@@ -2,7 +2,7 @@
 
 	/* -------------- Config --------------*/
 	$config      = pwConfig::load('pwtext');
-	$settings    = $config['settings'];
+	$settings    = $config['content'];
 	$tabSettings = $config['tabs'];
 	$defaults    = $config['defaults'];
 	$fields      = $config['fields'];
@@ -58,16 +58,16 @@
 	];
 
 	/* -------------- Layout Tab --------------*/
-	pwConfig::addTab($tabs, 'layout', $tabSettings['layout'] ?? true, pwLayout::options('pwtext', $defaults));
+	pwConfig::addTab($tabs, 'layout', $tabSettings['layout'] ?? true, pwLayout::options('pwtext', $defaults, [], $config['layout'] ?? []));
 
 	/* -------------- Style Tab --------------*/
-	pwConfig::addTab($tabs, 'style', $tabSettings['style'] ?? true, pwStyle::options('pwtext', $defaults));
+	pwConfig::addTab($tabs, 'style', $tabSettings['style'] ?? true, pwStyle::options('pwtext', $defaults, [], $config['style'] ?? []));
 
 	/* -------------- Grid Tab --------------*/
 	pwConfig::addTab($tabs, 'grid', $tabSettings['grid'] ?? false, pwGrid::layout('pwtext', $defaults));
 
 	/* -------------- Settings Tab --------------*/
-	pwConfig::addTab($tabs, 'settings', $tabSettings['settings'] ?? true, pwSettings::options('pwtext', $defaults));
+	pwConfig::addTab($tabs, 'settings', $tabSettings['settings'] ?? true, pwSettings::options('pwtext', $defaults, [], $config['settings'] ?? []));
 
 	/* -------------- Blueprint --------------*/
 	return [
