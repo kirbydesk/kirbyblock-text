@@ -1,9 +1,9 @@
 {
   "content": {
-    "align-tagline": "left",
-    "align-heading": "left",
-    "align-editor": "left",
-    "align-buttons": "left"
+    "tagline": { "align": "left" },
+    "heading": { "align": "left", "level": "h2", "size": "2xl" },
+    "editor":  { "align": "left", "size": "normal" },
+    "buttons": { "align": "left" }
   },
   "layout": {
     "padding-top": true,

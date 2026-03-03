@@ -121,7 +121,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         return align;
       },
       size() {
-        const { size = "normal" } = this.parsedData;
+        const { size = "2xl" } = this.parsedData;
         return size;
       }
     }
