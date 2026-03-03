@@ -24,18 +24,21 @@
 				:data-paddingleft="content.paddingleft === true ? 'true' : null"
 				>
 
-				<!-- Tagline -->
-				<pwTagline v-if="settings.tagline" :value="content.tagline" :alignDefault="fieldDefaults['align-tagline']" />
+				<div class="contents">
 
-				<!-- Heading -->
-				<pwHeading v-if="settings.heading" :value="content.heading" :data-level="content.level" :alignDefault="fieldDefaults['align-heading']" />
+					<!-- Tagline -->
+					<pwTagline v-if="settings.tagline" :value="content.tagline" :alignDefault="fieldDefaults['align-tagline']" />
 
-				<!-- Editor -->
-				<pwEditor v-if="settings.editor" :content="content" :alignDefault="fieldDefaults['align-editor']" />
+					<!-- Heading -->
+					<pwHeading v-if="settings.heading" :value="content.heading" :data-level="content.level" :alignDefault="fieldDefaults['align-heading']" />
 
-				<!-- Buttons -->
-				<pwButtons v-if="settings.buttons" :value="content.buttons" :align="content.buttonsalignment || fieldDefaults['align-buttons']" />
+					<!-- Editor -->
+					<pwEditor v-if="settings.editor" :content="content" :alignDefault="fieldDefaults['align-editor']" />
 
+					<!-- Buttons -->
+					<pwButtons v-if="settings.buttons" :value="content.buttons" :align="content.buttonsalignment || fieldDefaults['align-buttons']" />
+
+				</div>
 			</div>
 		</div>
 	</div>

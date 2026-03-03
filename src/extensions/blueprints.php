@@ -33,12 +33,14 @@
 	if ($defaultHeading) {
 		$contentFields['heading'] = [
 			'extends' => 'pagewizard/fields/heading',
-			'align'   => $fields['align-heading']
+			'align'   => $fields['align-heading'],
+			'size'   => 'normal'
 		];
 	}
 	/* -------------- Editor --------------*/
 	if ($defaultEditor) {
 		$contentFields['editor'] = pwEditor::contentField($defaults, $editor, $settings, $fields);
+		$contentFields['editor']['size'] = 'normal';
 	}
 	/* -------------- Buttons --------------*/
 	if ($defaultButtons) {
