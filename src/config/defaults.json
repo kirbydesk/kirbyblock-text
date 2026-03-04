@@ -1,8 +1,8 @@
 {
   "content": {
     "tagline": { "align": "left" },
-    "heading": { "align": "left", "level": "h2", "size": "2xl" },
-    "editor":  { "align": "left", "size": "normal" },
+    "heading": { "align": "left", "level": "h2", "size": "lg" },
+    "editor":  { "align": "left", "size": "normal", "mode": "textarea" },
     "buttons": { "align": "left" }
   },
   "layout": {

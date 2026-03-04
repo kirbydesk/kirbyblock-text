@@ -1,8 +1,7 @@
 {
-  "default-mode": "writer",
-  "marks": ["bold", "italic", "underline", "strike", "link"],
-  "nodes": ["heading", "bulletList", "orderedList"],
-  "headings": [1, 2, 3, 4],
+	"marks": ["bold", "italic", "underline", "strike", "link"],
+  "nodes": ["bulletList", "orderedList"],
+  "headings": [],
   "toolbar": {
     "inline": false
   }
