@@ -1,6 +1,6 @@
 {
 	"name": "kirbyblock-text",
-	"version": "1.5.0",
+	"version": "1.5.2",
 	"dependencies": {
 		"marked": "^16.4.1"
 	}

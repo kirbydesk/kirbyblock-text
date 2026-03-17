@@ -29,7 +29,7 @@
       "radius": true
     },
     "style": {
-      "theme": true
+      "theme": ["default", "variant", "variant2", "custom"]
     },
     "settings": {
       "fragment": true,
