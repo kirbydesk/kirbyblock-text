@@ -1,6 +1,7 @@
 {
 	"name": "kirbyblock-text",
-	"version": "1.5.2",
+	"version": "1.0.0",
+	"_dependencies_note": "Do not install here. Add these to the project root package.json instead — kirbyup resolves from there.",
 	"dependencies": {
 		"marked": "^16.4.1"
 	}
