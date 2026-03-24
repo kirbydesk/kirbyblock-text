@@ -1,6 +1,6 @@
 {
 	"name": "kirbydesk/kirbyblock-text",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Text Block for Kirby CMS",
 	"type": "kirby-plugin",
 	"keywords": [
