@@ -36,6 +36,8 @@
 			'sizeOptions'  => $fieldOptions['heading']['sizes'] ?? null,
 			'alignOptions' => $fieldOptions['heading']['align'] ?? null,
 			'levelOptions' => $fieldOptions['heading']['level'] ?? null,
+			'textbackground'        => $fields['textbackground-heading'] ?? null,
+			'textbackgroundOptions' => $fieldOptions['heading']['textbackground'] ?? null,
 		];
 	}
 	/* -------------- Editor --------------*/
@@ -45,7 +47,7 @@
 		$contentFields['editor']['size']         = $fields['size-editor'] ?? null;
 		$contentFields['editor']['alignOptions'] = $fieldOptions['editor']['align'] ?? null;
 		$contentFields['editor']['sizeOptions']  = $fieldOptions['editor']['sizes'] ?? null;
-			$contentFields['editor']['defaultMode'] = $fields['mode-editor'] ?? null;
+			$contentFields['editor']['defaultMode']           = $fields['mode-editor'] ?? null;
 	}
 	/* -------------- Buttons --------------*/
 	if (!empty($settings['buttons'])) {
