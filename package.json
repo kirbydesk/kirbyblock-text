@@ -2,7 +2,7 @@
 	"name": "kirbyblock-text",
 	"description": "Text",
 	"icon": "text-left",
-	"version": "1.0.7",
+	"version": "1.0.8",
 	"_dependencies_note": "Do not install here. Add these to the project root package.json instead \u2014 kirbyup resolves from there.",
 	"dependencies": {
 		"marked": "^16.4.1"
