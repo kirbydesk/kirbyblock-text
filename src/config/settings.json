@@ -63,6 +63,7 @@
 				}
 			},
 			"editor": {
+				"locked": true,
 				"mode": {
 					"options": [
 						"textarea",
