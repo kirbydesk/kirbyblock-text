@@ -22,6 +22,5 @@ export default {
 	components: {
 		pwBlockinfo
 	}
-	}
 }
 </script>
