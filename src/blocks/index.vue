@@ -1,12 +1,8 @@
 <template>
-	<div
-		class="pwPreview"
-		data-kirbyblock="text"
-		@dblclick="open"
-		:style="colorVars"
-		:data-margintop="content.margintop === true ? 'true' : null"
-		:data-marginbottom="content.marginbottom === true ? 'true' : null"
-		>
+	<!-- the block in the panel: its info bar and the shared preview of the
+	     Project Wizard (the project's look, the real content); a double
+	     click opens the block -->
+	<div class="pwPreview" data-kirbyblock="text" @dblclick="open">
 
 		<pwBlockinfo
 			:value="$t('kirbyblock-text.name')"
@@ -14,60 +10,17 @@
 			:layout="$t('pw.field.text-' + editorMode)"
 		/>
 
-		<div class="pwGrid">
-			<div
-				class="pwGridItem"
-				:style="gridVars"
-				:data-paddingtop="content.paddingtop || defaults['padding-top'] || null"
-				:data-paddingright="(content.paddingright !== undefined ? content.paddingright : defaults['padding-right']) === true ? 'true' : null"
-				:data-paddingbottom="content.paddingbottom || defaults['padding-bottom'] || null"
-				:data-paddingleft="(content.paddingleft !== undefined ? content.paddingleft : defaults['padding-left']) === true ? 'true' : null"
-				>
+		<pw-block-panel-preview type="pwtext" :content="content" />
 
-				<div class="contents">
-
-					<!-- Tagline -->
-					<pwTagline v-if="settings.tagline" :value="content.tagline" :alignDefault="fieldDefaults['align-tagline']" />
-
-					<!-- Heading -->
-					<pwHeading v-if="settings.heading" :value="content.heading" :data-level="content.level" :alignDefault="fieldDefaults['align-heading']" :sizeDefault="fieldDefaults['size-heading']" :textbackgroundDefault="fieldDefaults['textbackground-heading']" :multilineDefault="fieldDefaults['multiline-heading']" :flourishDefault="fieldDefaults['flourish-heading']" />
-
-					<!-- Editor -->
-					<pwEditor v-if="settings.editor" :content="content" :alignDefault="fieldDefaults['align-editor']" />
-
-					<!-- Buttons -->
-					<pwButtons v-if="settings.buttons" :value="content.buttons" :align="content.buttonsalignment || fieldDefaults['align-buttons']" />
-
-				</div>
-			</div>
-		</div>
 	</div>
 </template>
 
 <script>
 import pwBlockinfo from '@/../../kirby-pagewizard/src/components/blockinfo.vue'
-import pwTagline from '@/../../kirby-pagewizard/src/components/tagline.vue'
-import pwHeading from '@/../../kirby-pagewizard/src/components/heading.vue'
-import pwEditor from '@/../../kirby-pagewizard/src/components/editor.vue'
-import pwButtons from '@/../../kirby-pagewizard/src/components/buttons.vue'
-import pwGridStyle from '@/../../kirby-pagewizard/src/mixins/gridStyle.js';
-import pwColorStyle from '@/../../kirby-pagewizard/src/mixins/colorStyle.js';
 
 export default {
 	components: {
-		pwBlockinfo,
-		pwTagline,
-		pwHeading,
-		pwEditor,
-		pwButtons
-	},
-	mixins: [pwGridStyle, pwColorStyle],
-	data() {
-		return {
-			settings: {},
-			fieldDefaults: {},
-			defaults: {}
-		}
+		pwBlockinfo
 	},
 	computed: {
 		editorMode() {
@@ -77,16 +30,6 @@ export default {
 			} catch(e) {
 				return 'textarea';
 			}
-		}
-	},
-	async created() {
-		try {
-			const response = await this.$api.get('pagewizard/settings/pwtext');
-			this.settings = response.settings;
-			this.fieldDefaults = response.fields || {};
-			this.defaults = response.defaults || {};
-		} catch (e) {
-			this.settings = {};
 		}
 	}
 }
