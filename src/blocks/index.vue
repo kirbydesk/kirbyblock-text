@@ -6,6 +6,7 @@
 
 		<pwBlockinfo
 			:value="$t('kirbyblock-text.name')"
+			:design="'pwtext'"
 			icon="text-left"
 			:layout="$t('pw.field.text-' + editorMode)"
 		/>
